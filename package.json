@@ -1,7 +1,7 @@
 {
-  "name": "@chris.troutner/bitbox-js",
-  "version": "7.0.0",
-  "description": "BITBOX JavaScript SDK for Bitcoin Cash",
+  "name": "@chris.troutner/bch-js",
+  "version": "1.0.0",
+  "description": "Bitcoin Cash JavaScript Library",
   "author": "Chris Troutner <chris.troutner@gmail.com>",
   "contributors": [
     "Gabriel Cardona <gabriel@bitcoin.com>"
@@ -13,10 +13,10 @@
     "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
   "license": "MIT",
-  "homepage": "https://github.com/christroutner/bitbox-sdk",
+  "homepage": "https://github.com/christroutner/bch-js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/christroutner/bitbox-sdk.git"
+    "url": "git+https://github.com/christroutner/bch-js.git"
   },
   "dependencies": {
     "assert": "^2.0.0",
