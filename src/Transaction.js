@@ -11,7 +11,7 @@ class Transaction {
       // Handle single address.
       if (typeof txid === "string") {
         const response = await axios.get(
-          `${this.restURL}transaction/details/${txid}`
+          `${this.restURL}insight/transaction/details/${txid}`
         )
         return response.data
 
@@ -19,7 +19,7 @@ class Transaction {
       } else if (Array.isArray(txid)) {
         const options = {
           method: "POST",
-          url: `${this.restURL}transaction/details`,
+          url: `${this.restURL}insight/transaction/details`,
           data: {
             txids: txid
           }
