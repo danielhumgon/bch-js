@@ -6,7 +6,7 @@
   "contributors": [
     "Gabriel Cardona <gabriel@bitcoin.com>"
   ],
-  "main": "src/BITBOX",
+  "main": "src/bch-js",
   "scripts": {
     "test": "nyc mocha --timeout 30000 test/unit",
     "test:integration": "mocha --timeout 30000 test/integration",

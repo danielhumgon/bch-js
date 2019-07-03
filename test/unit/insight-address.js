@@ -1,6 +1,6 @@
 const assert = require("assert")
-const BITBOXSDK = require("../../src/BITBOX")
-const BITBOX = new BITBOXSDK()
+const BCHJS = require("../../src/bch-js")
+const bchjs = new BCHJS()
 const axios = require("axios")
 const sinon = require("sinon")
 
@@ -31,7 +31,7 @@ describe("#details", () => {
     const resolved = new Promise(r => r({ data: data }))
     sandbox.stub(axios, "get").returns(resolved)
 
-    BITBOX.Insight.Address.details(
+    bchjs.Insight.Address.details(
       "bitcoincash:qrdka2205f4hyukutc2g0s6lykperc8nsu5u2ddpqf"
     )
       .then(result => {
@@ -76,7 +76,7 @@ describe("#utxo", () => {
     const resolved = new Promise(r => r({ data: data }))
     sandbox.stub(axios, "get").returns(resolved)
 
-    BITBOX.Insight.Address.utxo(
+    bchjs.Insight.Address.utxo(
       "bitcoincash:ppuukp49np467kyzxl0fkla34rmgcddhvc33ce2d6l"
     )
       .then(result => {
@@ -109,7 +109,7 @@ describe("#unconfirmed", () => {
     const resolved = new Promise(r => r({ data: data }))
     sandbox.stub(axios, "get").returns(resolved)
 
-    BITBOX.Insight.Address.unconfirmed(
+    bchjs.Insight.Address.unconfirmed(
       "bitcoincash:qzs02v05l7qs5s24srqju498qu55dwuj0cx5ehjm2c"
     )
       .then(result => {

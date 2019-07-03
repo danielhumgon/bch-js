@@ -1,6 +1,6 @@
 const assert = require("chai").assert
-const BITBOXSDK = require("../../src/BITBOX")
-const BITBOX = new BITBOXSDK()
+const BCHJS = require("../../src/bch-js")
+const bchjs = new BCHJS()
 const axios = require("axios")
 const sinon = require("sinon")
 
@@ -18,7 +18,7 @@ describe("#Insight Block", () => {
       const resolved = new Promise(r => r({ data: data }))
       sandbox.stub(axios, "get").returns(resolved)
 
-      const result = await BITBOX.Insight.Block.detailsByHash(
+      const result = await bchjs.Insight.Block.detailsByHash(
         "000000001c6aeec19265e9cc3ded8ba5ef5e63fae7747f30bf9c02c7bc8883f0"
       )
       //console.log(`result: ${JSON.stringify(result, null, 2)}`)
@@ -37,7 +37,7 @@ describe("#Insight Block", () => {
       const resolved = new Promise(r => r({ data: data }))
       sandbox.stub(axios, "post").returns(resolved)
 
-      const result = await BITBOX.Insight.Block.detailsByHash(hashes)
+      const result = await bchjs.Insight.Block.detailsByHash(hashes)
       //console.log(`result: ${JSON.stringify(result, null, 2)}`)
 
       assert.deepEqual(data, result)
@@ -52,7 +52,7 @@ describe("#Insight Block", () => {
 
         const hash = 12345
 
-        await BITBOX.Insight.Block.detailsByHash(hash)
+        await bchjs.Insight.Block.detailsByHash(hash)
         assert.equal(true, false, "Unexpected result!")
       } catch (err) {
         //console.log(`err: `, err)
@@ -77,7 +77,7 @@ describe("#Insight Block", () => {
 
       const height = 500007
 
-      const result = await BITBOX.Insight.Block.detailsByHeight(height)
+      const result = await bchjs.Insight.Block.detailsByHeight(height)
       //console.log(`result: ${JSON.stringify(result, null, 2)}`)
 
       assert.deepEqual(blockMock.details, result)
@@ -91,7 +91,7 @@ describe("#Insight Block", () => {
       const resolved = new Promise(r => r({ data: data }))
       sandbox.stub(axios, "post").returns(resolved)
 
-      const result = await BITBOX.Insight.Block.detailsByHeight(heights)
+      const result = await bchjs.Insight.Block.detailsByHeight(heights)
       //console.log(`result: ${JSON.stringify(result, null, 2)}`)
 
       assert.deepEqual(data, result)
@@ -106,7 +106,7 @@ describe("#Insight Block", () => {
 
         const height = "abc123"
 
-        await BITBOX.Insight.Block.detailsByHeight(height)
+        await bchjs.Insight.Block.detailsByHeight(height)
         assert.equal(true, false, "Unexpected result!")
       } catch (err) {
         //console.log(`err: `, err)
@@ -147,7 +147,7 @@ describe("#Insight Block", () => {
       const resolved = new Promise(r => r({ data: data }))
       sandbox.stub(axios, "get").returns(resolved)
 
-      const result = await BITBOX.Insight.Block.detailsByHeight(500007)
+      const result = await bchjs.Insight.Block.detailsByHeight(500007)
 
       assert.deepEqual(result, data)
     })

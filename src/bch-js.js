@@ -1,28 +1,28 @@
 // local deps
-const BitcoinCash = require("./BitcoinCash")
-const Crypto = require("./Crypto")
-const Util = require("./Util")
-const Blockchain = require("./Blockchain")
-const Control = require("./Control")
-const Generating = require("./Generating")
-const Mining = require("./Mining")
-const RawTransactions = require("./RawTransactions")
-const Mnemonic = require("./Mnemonic")
-const Address = require("./Address")
-const HDNode = require("./HDNode")
-const TransactionBuilder = require("./TransactionBuilder")
-const ECPair = require("./ECPair")
-const Script = require("./Script")
-const Price = require("./Price")
-const Socket = require("./Socket")
-const Wallet = require("./Wallet")
-const Schnorr = require("./Schnorr")
+const BitcoinCash = require("./bitcoincash")
+const Crypto = require("./crypto")
+const Util = require("./util")
+const Blockchain = require("./blockchain")
+const Control = require("./control")
+const Generating = require("./generating")
+const Mining = require("./mining")
+const RawTransactions = require("./raw-transactions")
+const Mnemonic = require("./mnemonic")
+const Address = require("./address")
+const HDNode = require("./hdnode")
+const TransactionBuilder = require("./transaction-builder")
+const ECPair = require("./ecpair")
+const Script = require("./script")
+const Price = require("./price")
+const Socket = require("./socket")
+const Wallet = require("./wallet")
+const Schnorr = require("./schnorr")
 
 const InsightAddress = require("./insight/address")
 const InsightBlock = require("./insight/block")
 const InsightTransaction = require("./insight/transaction")
 
-class BITBOX {
+class BCHJS {
   constructor(config) {
     if (config && config.restURL && config.restURL !== "")
       this.restURL = config.restURL
@@ -62,4 +62,4 @@ class BITBOX {
   }
 }
 
-module.exports = BITBOX
+module.exports = BCHJS
