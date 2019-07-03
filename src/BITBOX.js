@@ -10,7 +10,6 @@ const RawTransactions = require("./RawTransactions")
 const Mnemonic = require("./Mnemonic")
 const Address = require("./Address")
 const HDNode = require("./HDNode")
-const Transaction = require("./Transaction")
 const TransactionBuilder = require("./TransactionBuilder")
 const ECPair = require("./ECPair")
 const Script = require("./Script")
@@ -21,6 +20,7 @@ const Schnorr = require("./Schnorr")
 
 const InsightAddress = require("./insight/address")
 const InsightBlock = require("./insight/block")
+const InsightTransaction = require("./insight/transaction")
 
 class BITBOX {
   constructor(config) {
@@ -34,11 +34,15 @@ class BITBOX {
     this.Insight = {}
     this.Insight.Address = new InsightAddress(this.restURL)
     this.Insight.Block = new InsightBlock(this.restURL)
+    this.Insight.Transaction = new InsightTransaction(this.restURL)
 
+    // Populate Full Node
+    this.Control = new Control(this.restURL)
+
+    // Populate utility functions
     this.Address = new Address(this.restURL)
     this.BitcoinCash = new BitcoinCash(this.Address)
     this.Blockchain = new Blockchain(this.restURL)
-    this.Control = new Control(this.restURL)
     this.Crypto = Crypto
     this.ECPair = ECPair
     this.ECPair.setAddress(this.Address)
@@ -49,7 +53,6 @@ class BITBOX {
     this.Price = new Price()
     this.RawTransactions = new RawTransactions(this.restURL)
     this.Script = new Script()
-    this.Transaction = new Transaction(this.restURL)
     this.TransactionBuilder = TransactionBuilder
     this.TransactionBuilder.setAddress(this.Address)
     this.Util = new Util(this.restURL)
