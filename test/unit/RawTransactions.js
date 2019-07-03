@@ -20,7 +20,7 @@ util.inspect.defaultOptions = { depth: 1 }
 describe("#RawTransactions", () => {
   describe("#decodeRawTransaction", () => {
     let sandbox
-    beforeEach(() => (sandbox = sinon.sandbox.create()))
+    beforeEach(() => (sandbox = sinon.createSandbox()))
     afterEach(() => sandbox.restore())
 
     it("should decode raw transaction", done => {
@@ -39,9 +39,9 @@ describe("#RawTransactions", () => {
       const resolved = new Promise(r => r({ data: data }))
       sandbox.stub(axios, "get").returns(resolved)
 
-      BITBOX.RawTransactions.decodeRawTransaction(["02000000000000000000"])
+      BITBOX.RawTransactions.decodeRawTransaction("02000000000000000000")
         .then(result => {
-          assert.deepEqual(data, result[0])
+          assert.equal(data, result)
         })
         .then(done, done)
     })
@@ -49,7 +49,7 @@ describe("#RawTransactions", () => {
 
   describe("#decodeScript", () => {
     let sandbox
-    beforeEach(() => (sandbox = sinon.sandbox.create()))
+    beforeEach(() => (sandbox = sinon.createSandbox()))
     afterEach(() => sandbox.restore())
 
     it("should decode script", async () => {
@@ -73,7 +73,7 @@ describe("#RawTransactions", () => {
 
   describe("#getRawTransaction", () => {
     let sandbox
-    beforeEach(() => (sandbox = sinon.sandbox.create()))
+    beforeEach(() => (sandbox = sinon.createSandbox()))
     afterEach(() => sandbox.restore())
 
     it("should get raw transaction", done => {
@@ -83,11 +83,11 @@ describe("#RawTransactions", () => {
       const resolved = new Promise(r => r({ data: data }))
       sandbox.stub(axios, "get").returns(resolved)
 
-      BITBOX.RawTransactions.getRawTransaction([
+      BITBOX.RawTransactions.getRawTransaction(
         "808d617eccaad4f1397fe07a06ec5ed15a0821cf22a3e0931c0c92aef9e572b6"
-      ])
+      )
         .then(result => {
-          assert.deepEqual(data, result[0])
+          assert.equal(data, result)
         })
         .then(done, done)
     })
@@ -95,7 +95,7 @@ describe("#RawTransactions", () => {
 
   describe("#sendRawTransaction", () => {
     let sandbox
-    beforeEach(() => (sandbox = sinon.sandbox.create()))
+    beforeEach(() => (sandbox = sinon.createSandbox()))
     afterEach(() => sandbox.restore())
 
     it("should send single raw transaction", async () => {
