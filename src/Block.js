@@ -9,7 +9,7 @@ class Block {
       // Single block
       if (typeof id === "number") {
         const response = await axios.get(
-          `${this.restURL}block/detailsByHeight/${id}`
+          `${this.restURL}insight/block/detailsByHeight/${id}`
         )
         return response.data
 
@@ -17,7 +17,7 @@ class Block {
       } else if (Array.isArray(id)) {
         // Dev note: must use axios.post for unit test stubbing.
         const response = await axios.post(
-          `${this.restURL}block/detailsByHeight`,
+          `${this.restURL}insight/block/detailsByHeight`,
           {
             heights: id
           }
@@ -38,7 +38,7 @@ class Block {
       // Single block
       if (typeof hash === "string") {
         const response = await axios.get(
-          `${this.restURL}block/detailsByHash/${hash}`
+          `${this.restURL}insight/block/detailsByHash/${hash}`
         )
         return response.data
 
@@ -46,9 +46,9 @@ class Block {
       } else if (Array.isArray(hash)) {
         // Dev note: must use axios.post for unit test stubbing.
         const response = await axios.post(
-          `${this.restURL}block/detailsByHash`,
+          `${this.restURL}insight/block/detailsByHash`,
           {
-            heights: hash
+            hashes: hash
           }
         )
 

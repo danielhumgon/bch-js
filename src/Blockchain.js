@@ -130,9 +130,7 @@ class Blockchain {
 
     try {
       const response = await axios.get(
-        `${
-          this.restURL
-        }blockchain/getMempoolAncestors/${txid}?verbose=${verbose}`
+        `${this.restURL}blockchain/getMempoolAncestors/${txid}?verbose=${verbose}`
       )
       return response.data
     } catch (error) {
@@ -146,9 +144,7 @@ class Blockchain {
 
     try {
       const response = await axios.get(
-        `${
-          this.restURL
-        }blockchain/getMempoolDescendants/${txid}?verbose=${verbose}`
+        `${this.restURL}blockchain/getMempoolDescendants/${txid}?verbose=${verbose}`
       )
       return response.data
     } catch (error) {
@@ -213,9 +209,7 @@ class Blockchain {
   async getTxOut(txid, n, include_mempool = true) {
     try {
       const response = await axios.get(
-        `${
-          this.restURL
-        }blockchain/getTxOut/${txid}/n?include_mempool=${include_mempool}`
+        `${this.restURL}blockchain/getTxOut/${txid}/n?include_mempool=${include_mempool}`
       )
       return response.data
     } catch (error) {
@@ -240,7 +234,7 @@ class Blockchain {
         const response = await axios.post(
           `${this.restURL}blockchain/getTxOutProof`,
           {
-            txids: txid
+            txids: txids
           }
         )
 
@@ -281,9 +275,7 @@ class Blockchain {
   async verifyChain(checklevel = 3, nblocks = 6) {
     try {
       const response = await axios.get(
-        `${
-          this.restURL
-        }blockchain/verifyChain?checklevel=${checklevel}&nblocks=${nblocks}`
+        `${this.restURL}blockchain/verifyChain?checklevel=${checklevel}&nblocks=${nblocks}`
       )
       return response.data
     } catch (error) {

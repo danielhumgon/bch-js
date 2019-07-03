@@ -272,7 +272,7 @@ class Address {
       // Handle single address.
       if (typeof address === "string") {
         const response = await axios.get(
-          `${this.restURL}address/details/${address}`
+          `${this.restURL}insight/address/details/${address}`
         )
 
         return response.data
@@ -281,7 +281,7 @@ class Address {
       } else if (Array.isArray(address)) {
         const options = {
           method: "POST",
-          url: `${this.restURL}address/details`,
+          url: `${this.restURL}insight/address/details`,
           data: {
             addresses: address
           }
@@ -303,13 +303,13 @@ class Address {
       // Handle single address.
       if (typeof address === "string") {
         const response = await axios.get(
-          `${this.restURL}address/utxo/${address}`
+          `${this.restURL}insight/address/utxo/${address}`
         )
         return response.data
       } else if (Array.isArray(address)) {
         const options = {
           method: "POST",
-          url: `${this.restURL}address/utxo`,
+          url: `${this.restURL}insight/address/utxo`,
           data: {
             addresses: address
           }
@@ -331,7 +331,7 @@ class Address {
       // Handle single address.
       if (typeof address === "string") {
         const response = await axios.get(
-          `${this.restURL}address/unconfirmed/${address}`
+          `${this.restURL}insight/address/unconfirmed/${address}`
         )
         return response.data
 
@@ -339,7 +339,7 @@ class Address {
       } else if (Array.isArray(address)) {
         const options = {
           method: "POST",
-          url: `${this.restURL}address/unconfirmed`,
+          url: `${this.restURL}insight/address/unconfirmed`,
           data: {
             addresses: address
           }
@@ -361,7 +361,7 @@ class Address {
       // Handle single address.
       if (typeof address === "string") {
         const response = await axios.get(
-          `${this.restURL}address/transactions/${address}`
+          `${this.restURL}insight/address/transactions/${address}`
         )
         return response.data
 
@@ -369,7 +369,7 @@ class Address {
       } else if (Array.isArray(address)) {
         const options = {
           method: "POST",
-          url: `${this.restURL}address/transactions`,
+          url: `${this.restURL}insight/address/transactions`,
           data: {
             addresses: address
           }

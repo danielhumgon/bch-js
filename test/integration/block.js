@@ -136,7 +136,7 @@ describe(`#block`, () => {
     it(`should GET block details for an array of hashes`, async () => {
       const hash = [
         "000000000000000005e14d3f9fdfb70745308706615cfa9edca4f4558332b201",
-        "000000000000000005e14d3f9fdfb70745308706615cfa9edca4f4558332b201"
+        "00000000000000000568f0a96bf4348847bc84e455cbfec389f27311037a20f3"
       ]
 
       const result = await BITBOX.Block.detailsByHash(hash)
