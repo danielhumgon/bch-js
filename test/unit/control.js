@@ -1,13 +1,13 @@
 const assert = require("assert")
 const axios = require("axios")
-const BITBOXSDK = require("../../src/BITBOX")
-const BITBOX = new BITBOXSDK()
+const BCHJS = require("../../src/bch-js")
+const bchjs = new BCHJS()
 const sinon = require("sinon")
 
 describe("#Control", () => {
   describe("#getInfo", () => {
     let sandbox
-    beforeEach(() => (sandbox = sinon.sandbox.create()))
+    beforeEach(() => (sandbox = sinon.createSandbox()))
     afterEach(() => sandbox.restore())
 
     it("should get info", done => {
@@ -27,7 +27,7 @@ describe("#Control", () => {
       const resolved = new Promise(r => r({ data: data }))
       sandbox.stub(axios, "get").returns(resolved)
 
-      BITBOX.Control.getInfo()
+      bchjs.Control.getInfo()
         .then(result => {
           assert.deepEqual(data, result)
         })
@@ -37,7 +37,7 @@ describe("#Control", () => {
 
   describe("#getMemoryInfo", () => {
     let sandbox
-    beforeEach(() => (sandbox = sinon.sandbox.create()))
+    beforeEach(() => (sandbox = sinon.createSandbox()))
     afterEach(() => sandbox.restore())
 
     it("should get memory info", done => {
@@ -54,7 +54,7 @@ describe("#Control", () => {
       const resolved = new Promise(r => r({ data: data }))
       sandbox.stub(axios, "get").returns(resolved)
 
-      BITBOX.Control.getMemoryInfo()
+      bchjs.Control.getMemoryInfo()
         .then(result => {
           assert.deepEqual(data, result)
         })

@@ -1,13 +1,13 @@
 const assert = require("assert")
-const BITBOXSDK = require("../../src/BITBOX")
-const BITBOX = new BITBOXSDK()
+const BCHJS = require("../../src/bch-js")
+const bchjs = new BCHJS()
 const axios = require("axios")
 const sinon = require("sinon")
 
 describe("#Transaction", () => {
   describe("#details", () => {
     let sandbox
-    beforeEach(() => (sandbox = sinon.sandbox.create()))
+    beforeEach(() => (sandbox = sinon.createSandbox()))
     afterEach(() => sandbox.restore())
 
     it("should get transaction details", done => {
@@ -40,7 +40,7 @@ describe("#Transaction", () => {
       const resolved = new Promise(r => r({ data: data }))
       sandbox.stub(axios, "get").returns(resolved)
 
-      BITBOX.Transaction.details(
+      bchjs.Insight.Transaction.details(
         "a85fa3d831ab6b0305e7ff88d2d4941e25a810d4461635df51490653822071a8"
       )
         .then(result => {

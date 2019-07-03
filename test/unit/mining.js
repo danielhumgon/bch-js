@@ -1,7 +1,7 @@
 const assert = require("assert")
 const axios = require("axios")
-const BITBOXSDK = require("../../src/BITBOX")
-const BITBOX = new BITBOXSDK()
+const BCHJS = require("../../src/bch-js")
+const bchjs = new BCHJS()
 const sinon = require("sinon")
 
 describe("#Mining", () => {
@@ -26,7 +26,7 @@ describe("#Mining", () => {
       const resolved = new Promise(r => r({ data: data }))
       sandbox.stub(axios, "get").returns(resolved)
 
-      BITBOX.Mining.getBlockTemplate("")
+      bchjs.Mining.getBlockTemplate("")
         .then(result => {
           assert.deepEqual(data, result)
         })
@@ -55,7 +55,7 @@ describe("#Mining", () => {
       const resolved = new Promise(r => r({ data: data }))
       sandbox.stub(axios, "get").returns(resolved)
 
-      BITBOX.Mining.getMiningInfo()
+      bchjs.Mining.getMiningInfo()
         .then(result => {
           assert.deepEqual(data, result)
         })
@@ -74,7 +74,7 @@ describe("#Mining", () => {
       const resolved = new Promise(r => r({ data: data }))
       sandbox.stub(axios, "get").returns(resolved)
 
-      BITBOX.Mining.getNetworkHashps()
+      bchjs.Mining.getNetworkHashps()
         .then(result => {
           assert.equal(data, result)
         })
@@ -94,7 +94,7 @@ describe("#Mining", () => {
       const resolved = new Promise(r => r({ data: data }))
       sandbox.stub(axios, "post").returns(resolved)
 
-      BITBOX.Mining.submitBlock()
+      bchjs.Mining.submitBlock()
         .then(result => {
           assert.deepEqual(data, result)
         })
