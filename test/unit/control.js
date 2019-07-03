@@ -7,7 +7,7 @@ const sinon = require("sinon")
 describe("#Control", () => {
   describe("#getInfo", () => {
     let sandbox
-    beforeEach(() => (sandbox = sinon.sandbox.create()))
+    beforeEach(() => (sandbox = sinon.createSandbox()))
     afterEach(() => sandbox.restore())
 
     it("should get info", done => {
@@ -37,7 +37,7 @@ describe("#Control", () => {
 
   describe("#getMemoryInfo", () => {
     let sandbox
-    beforeEach(() => (sandbox = sinon.sandbox.create()))
+    beforeEach(() => (sandbox = sinon.createSandbox()))
     afterEach(() => sandbox.restore())
 
     it("should get memory info", done => {

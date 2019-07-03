@@ -2,7 +2,6 @@
 const BitcoinCash = require("./BitcoinCash")
 const Crypto = require("./Crypto")
 const Util = require("./Util")
-const Block = require("./Block")
 const Blockchain = require("./Blockchain")
 const Control = require("./Control")
 const Generating = require("./Generating")
@@ -21,6 +20,7 @@ const Wallet = require("./Wallet")
 const Schnorr = require("./Schnorr")
 
 const InsightAddress = require("./insight/address")
+const InsightBlock = require("./insight/block")
 
 class BITBOX {
   constructor(config) {
@@ -33,10 +33,10 @@ class BITBOX {
     // Populate the Insight API endpoints.
     this.Insight = {}
     this.Insight.Address = new InsightAddress(this.restURL)
+    this.Insight.Block = new InsightBlock(this.restURL)
 
     this.Address = new Address(this.restURL)
     this.BitcoinCash = new BitcoinCash(this.Address)
-    this.Block = new Block(this.restURL)
     this.Blockchain = new Blockchain(this.restURL)
     this.Control = new Control(this.restURL)
     this.Crypto = Crypto
