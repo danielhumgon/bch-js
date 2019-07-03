@@ -1,4 +1,4 @@
-const fixtures = require("./fixtures/TransactionBuilder.json")
+const fixtures = require("./fixtures/transaction-builder.json")
 const assert = require("assert")
 const BITBOXSDK = require("../../src/BITBOX")
 const BITBOX = new BITBOXSDK()

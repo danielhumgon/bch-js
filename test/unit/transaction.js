@@ -7,7 +7,7 @@ const sinon = require("sinon")
 describe("#Transaction", () => {
   describe("#details", () => {
     let sandbox
-    beforeEach(() => (sandbox = sinon.sandbox.create()))
+    beforeEach(() => (sandbox = sinon.createSandbox()))
     afterEach(() => sandbox.restore())
 
     it("should get transaction details", done => {

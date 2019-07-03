@@ -1,4 +1,4 @@
-const fixtures = require("./fixtures/BitcoinCash.json")
+const fixtures = require("./fixtures/bitcoincash.json")
 const assert = require("assert")
 const BITBOXSDK = require("../../src/BITBOX")
 const BITBOX = new BITBOXSDK()
@@ -123,9 +123,7 @@ describe("#BitcoinCash", () => {
   describe("sign and verify messages", () => {
     describe("#signMessageWithPrivKey", () => {
       fixtures.signatures.sign.forEach(sign => {
-        it(`should sign a message w/ ${sign.network} ${
-          sign.privateKeyWIF
-        }`, () => {
+        it(`should sign a message w/ ${sign.network} ${sign.privateKeyWIF}`, () => {
           const privateKeyWIF = sign.privateKeyWIF
           const message = sign.message
           const signature = BITBOX.BitcoinCash.signMessageWithPrivKey(
@@ -139,9 +137,7 @@ describe("#BitcoinCash", () => {
 
     describe("#verifyMessage", () => {
       fixtures.signatures.verify.forEach(sign => {
-        it(`should verify a valid signed message from ${
-          sign.network
-        } cashaddr address ${sign.address}`, () => {
+        it(`should verify a valid signed message from ${sign.network} cashaddr address ${sign.address}`, () => {
           assert.equal(
             BITBOX.BitcoinCash.verifyMessage(
               sign.address,
@@ -155,9 +151,7 @@ describe("#BitcoinCash", () => {
 
       fixtures.signatures.verify.forEach(sign => {
         const legacyAddress = BITBOX.Address.toLegacyAddress(sign.address)
-        it(`should verify a valid signed message from ${
-          sign.network
-        } legacy address ${legacyAddress}`, () => {
+        it(`should verify a valid signed message from ${sign.network} legacy address ${legacyAddress}`, () => {
           assert.equal(
             BITBOX.BitcoinCash.verifyMessage(
               legacyAddress,
@@ -171,9 +165,7 @@ describe("#BitcoinCash", () => {
 
       fixtures.signatures.verify.forEach(sign => {
         const legacyAddress = BITBOX.Address.toLegacyAddress(sign.address)
-        it(`should not verify an invalid signed message from ${
-          sign.network
-        } cashaddr address ${sign.address}`, () => {
+        it(`should not verify an invalid signed message from ${sign.network} cashaddr address ${sign.address}`, () => {
           assert.equal(
             BITBOX.BitcoinCash.verifyMessage(
               sign.address,
@@ -190,9 +182,7 @@ describe("#BitcoinCash", () => {
   describe("encode and decode to base58Check", () => {
     describe("#encodeBase58Check", () => {
       fixtures.encodeBase58Check.forEach((base58Check, i) => {
-        it(`encode ${base58Check.hex} as base58Check ${
-          base58Check.base58Check
-        }`, () => {
+        it(`encode ${base58Check.hex} as base58Check ${base58Check.base58Check}`, () => {
           assert.equal(
             BITBOX.BitcoinCash.encodeBase58Check(base58Check.hex),
             base58Check.base58Check
@@ -277,9 +267,7 @@ describe("#BitcoinCash", () => {
   describe("#bip38", () => {
     describe("#encryptBIP38", () => {
       fixtures.bip38.encrypt.mainnet.forEach(fixture => {
-        it(`BIP 38 encrypt wif ${fixture.wif} with password ${
-          fixture.password
-        } on mainnet`, () => {
+        it(`BIP 38 encrypt wif ${fixture.wif} with password ${fixture.password} on mainnet`, () => {
           const encryptedKey = BITBOX.BitcoinCash.encryptBIP38(
             fixture.wif,
             fixture.password
@@ -289,9 +277,7 @@ describe("#BitcoinCash", () => {
       })
 
       fixtures.bip38.encrypt.testnet.forEach(fixture => {
-        it(`BIP 38 encrypt wif ${fixture.wif} with password ${
-          fixture.password
-        } on testnet`, () => {
+        it(`BIP 38 encrypt wif ${fixture.wif} with password ${fixture.password} on testnet`, () => {
           const encryptedKey = BITBOX.BitcoinCash.encryptBIP38(
             fixture.wif,
             fixture.password
@@ -303,9 +289,7 @@ describe("#BitcoinCash", () => {
 
     describe("#decryptBIP38", () => {
       fixtures.bip38.decrypt.mainnet.forEach(fixture => {
-        it(`BIP 38 decrypt encrypted key ${
-          fixture.encryptedKey
-        } on mainnet`, () => {
+        it(`BIP 38 decrypt encrypted key ${fixture.encryptedKey} on mainnet`, () => {
           const wif = BITBOX.BitcoinCash.decryptBIP38(
             fixture.encryptedKey,
             fixture.password,
@@ -316,9 +300,7 @@ describe("#BitcoinCash", () => {
       })
 
       fixtures.bip38.decrypt.testnet.forEach(fixture => {
-        it(`BIP 38 decrypt encrypted key ${
-          fixture.encryptedKey
-        } on testnet`, () => {
+        it(`BIP 38 decrypt encrypted key ${fixture.encryptedKey} on testnet`, () => {
           const wif = BITBOX.BitcoinCash.decryptBIP38(
             fixture.encryptedKey,
             fixture.password,

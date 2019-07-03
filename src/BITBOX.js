@@ -20,6 +20,8 @@ const Socket = require("./Socket")
 const Wallet = require("./Wallet")
 const Schnorr = require("./Schnorr")
 
+const InsightAddress = require("./insight/address")
+
 class BITBOX {
   constructor(config) {
     if (config && config.restURL && config.restURL !== "")
@@ -28,7 +30,9 @@ class BITBOX {
     //else this.restURL = "http://localhost:3000/v2/"
     else this.restURL = "http://localhost:3000/v3/"
 
+    // Populate the Insight API endpoints.
     this.Insight = {}
+    this.Insight.Address = new InsightAddress(this.restURL)
 
     this.Address = new Address(this.restURL)
     this.BitcoinCash = new BitcoinCash(this.Address)

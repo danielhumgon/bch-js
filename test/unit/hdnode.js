@@ -1,4 +1,4 @@
-const fixtures = require("./fixtures/HDNode.json")
+const fixtures = require("./fixtures/hdnode.json")
 const assert = require("assert")
 const BITBOXSDK = require("../../src/BITBOX")
 const BITBOX = new BITBOXSDK()
@@ -113,9 +113,7 @@ describe("#HDNode", () => {
         assert.equal(addy, fixture.address)
       })
 
-      it(`should get address ${
-        fixture.regtestAddress
-      } from HDNode`, async () => {
+      it(`should get address ${fixture.regtestAddress} from HDNode`, async () => {
         const rootSeedBuffer = await BITBOX.Mnemonic.toSeed(fixture.mnemonic)
         const hdNode = BITBOX.HDNode.fromSeed(rootSeedBuffer)
         const childHDNode = BITBOX.HDNode.derivePath(hdNode, "0")
@@ -127,9 +125,7 @@ describe("#HDNode", () => {
 
   describe("#toWIF", () => {
     fixtures.toWIF.forEach(fixture => {
-      it(`should get privateKeyWIF ${
-        fixture.privateKeyWIF
-      } from HDNode`, () => {
+      it(`should get privateKeyWIF ${fixture.privateKeyWIF} from HDNode`, () => {
         const hdNode = BITBOX.HDNode.fromXPriv(fixture.xpriv)
         assert.equal(BITBOX.HDNode.toWIF(hdNode), fixture.privateKeyWIF)
       })

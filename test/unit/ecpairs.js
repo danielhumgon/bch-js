@@ -1,4 +1,4 @@
-const fixtures = require("./fixtures/ECPair.json")
+const fixtures = require("./fixtures/ecpair.json")
 const assert = require("assert")
 const BITBOXSDK = require("../../src/BITBOX")
 const BITBOX = new BITBOXSDK()
@@ -91,9 +91,7 @@ describe("#ECPair", () => {
 
   describe("#toLegacyAddress", () => {
     fixtures.toLegacyAddress.forEach(fixture => {
-      it(`should create legacy address ${
-        fixture.legacy
-      } from an ECPair`, () => {
+      it(`should create legacy address ${fixture.legacy} from an ECPair`, () => {
         const ecpair = BITBOX.ECPair.fromWIF(fixture.privateKeyWIF)
         const legacyAddress = BITBOX.ECPair.toLegacyAddress(ecpair)
         assert.equal(legacyAddress, fixture.legacy)
@@ -103,9 +101,7 @@ describe("#ECPair", () => {
 
   describe("#toCashAddress", () => {
     fixtures.toCashAddress.forEach(fixture => {
-      it(`should create cash address ${
-        fixture.cashAddr
-      } from an ECPair`, () => {
+      it(`should create cash address ${fixture.cashAddr} from an ECPair`, () => {
         const ecpair = BITBOX.ECPair.fromWIF(fixture.privateKeyWIF)
         const cashAddr = BITBOX.ECPair.toCashAddress(ecpair)
         assert.equal(cashAddr, fixture.cashAddr)
@@ -113,9 +109,7 @@ describe("#ECPair", () => {
     })
 
     fixtures.toCashAddress.forEach(fixture => {
-      it(`should create regtest cash address ${
-        fixture.regtestAddr
-      } from an ECPair`, () => {
+      it(`should create regtest cash address ${fixture.regtestAddr} from an ECPair`, () => {
         const ecpair = BITBOX.ECPair.fromWIF(fixture.privateKeyWIF)
         const regtestAddr = BITBOX.ECPair.toCashAddress(ecpair, true)
         assert.equal(regtestAddr, fixture.regtestAddr)
@@ -138,7 +132,7 @@ describe("#ECPair", () => {
     fixtures.verify.forEach(fixture => {
       it(`should verify signed 32 byte hash buffer`, () => {
         const ecpair1 = BITBOX.ECPair.fromWIF(fixture.privateKeyWIF1)
-        const ecpair2 = BITBOX.ECPair.fromWIF(fixture.privateKeyWIF2)
+        //const ecpair2 = BITBOX.ECPair.fromWIF(fixture.privateKeyWIF2)
         const buf = Buffer.from(BITBOX.Crypto.sha256(fixture.data), "hex")
         const signature = BITBOX.ECPair.sign(ecpair1, buf)
         const verify = BITBOX.ECPair.verify(ecpair1, buf, signature)

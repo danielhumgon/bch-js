@@ -1,4 +1,4 @@
-const fixtures = require("./fixtures/Script.json")
+const fixtures = require("./fixtures/script.json")
 const assert = require("assert")
 const BITBOXSDK = require("../../src/BITBOX")
 const BITBOX = new BITBOXSDK()
@@ -15,9 +15,7 @@ describe("#Script", () => {
           assert.equal(typeof decodedScriptSig, "object")
         })
 
-        it(`should decode scriptSig buffer to cash address ${
-          fixture.cashAddress
-        }`, () => {
+        it(`should decode scriptSig buffer to cash address ${fixture.cashAddress}`, () => {
           const decodedScriptSig = BITBOX.Script.decode(
             Buffer.from(fixture.scriptSigHex, "hex")
           )
@@ -27,9 +25,7 @@ describe("#Script", () => {
           assert.equal(address, fixture.cashAddress)
         })
 
-        it(`should decode scriptSig buffer to legacy address ${
-          fixture.legacyAddress
-        }`, () => {
+        it(`should decode scriptSig buffer to legacy address ${fixture.legacyAddress}`, () => {
           const decodedScriptSig = BITBOX.Script.decode(
             Buffer.from(fixture.scriptSigHex, "hex")
           )

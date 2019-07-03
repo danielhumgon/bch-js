@@ -7,7 +7,7 @@ const sinon = require("sinon")
 describe("#Util", () => {
   describe("#validateAddress", () => {
     let sandbox
-    beforeEach(() => (sandbox = sinon.sandbox.create()))
+    beforeEach(() => (sandbox = sinon.createSandbox()))
     afterEach(() => sandbox.restore())
 
     it("should validate address", done => {

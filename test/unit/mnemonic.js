@@ -1,4 +1,4 @@
-const fixtures = require("./fixtures/Mnemonic.json")
+const fixtures = require("./fixtures/mnemonic.json")
 const assert = require("assert")
 const BITBOXSDK = require("../../src/BITBOX")
 const BITBOX = new BITBOXSDK()
@@ -332,9 +332,7 @@ describe("#Mnemonic", () => {
         fixture.word,
         BITBOX.Mnemonic.wordLists()[fixture.language]
       )
-      it(`find word ${fixture.foundWord} near ${fixture.word} in ${
-        fixture.language
-      }`, () => {
+      it(`find word ${fixture.foundWord} near ${fixture.word} in ${fixture.language}`, () => {
         assert.equal(word, fixture.foundWord)
       })
     })
