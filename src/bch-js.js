@@ -22,6 +22,8 @@ const InsightAddress = require("./insight/address")
 const InsightBlock = require("./insight/block")
 const InsightTransaction = require("./insight/transaction")
 
+const Blockbook = require("./blockbook")
+
 class BCHJS {
   constructor(config) {
     if (config && config.restURL && config.restURL !== "")
@@ -35,6 +37,9 @@ class BCHJS {
     this.Insight.Address = new InsightAddress(this.restURL)
     this.Insight.Block = new InsightBlock(this.restURL)
     this.Insight.Transaction = new InsightTransaction(this.restURL)
+
+    // Populate Blockbook endpoints.
+    this.Blockbook = new Blockbook(this.restURL)
 
     // Populate Full Node
     this.Control = new Control(this.restURL)
