@@ -28,6 +28,8 @@ class BITBOX {
     //else this.restURL = "http://localhost:3000/v2/"
     else this.restURL = "http://localhost:3000/v3/"
 
+    this.Insight = {}
+
     this.Address = new Address(this.restURL)
     this.BitcoinCash = new BitcoinCash(this.Address)
     this.Block = new Block(this.restURL)

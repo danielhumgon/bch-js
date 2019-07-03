@@ -21,7 +21,7 @@ util.inspect.defaultOptions = {
   depth: 3
 }
 
-describe(`#address`, () => {
+describe(`#Insight Address`, () => {
   describe(`#details`, () => {
     it(`should GET address details for a single address`, async () => {
       const addr = "bitcoincash:qrdka2205f4hyukutc2g0s6lykperc8nsu5u2ddpqf"
