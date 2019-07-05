@@ -1,4 +1,5 @@
-const assert = require("assert")
+const chai = require("chai")
+const assert = chai.assert
 const BCHJS = require("../../src/bch-js")
 const bchjs = new BCHJS()
 const axios = require("axios")
@@ -8,11 +9,14 @@ const mockData = require("./fixtures/blockbook-mock")
 
 describe(`#Blockbook`, () => {
   let sandbox
-  beforeEach(() => (sandbox = sinon.sandbox.create()))
+  beforeEach(() => (sandbox = sinon.createSandbox()))
   afterEach(() => sandbox.restore())
 
   describe(`#Balance`, () => {
     it(`should GET balance for a single address`, async () => {
+      // Stub the network call.
+      sandbox.stub(axios, "get").resolves({ data: mockData.balance })
+
       const addr = "bitcoincash:qrdka2205f4hyukutc2g0s6lykperc8nsu5u2ddpqf"
 
       const result = await bchjs.Blockbook.balance(addr)
@@ -35,6 +39,11 @@ describe(`#Blockbook`, () => {
     })
 
     it(`should POST request balances for an array of addresses`, async () => {
+      // Stub the network call.
+      sandbox
+        .stub(axios, "post")
+        .resolves({ data: [mockData.balance, mockData.balance] })
+
       const addr = [
         "bitcoincash:qrdka2205f4hyukutc2g0s6lykperc8nsu5u2ddpqf",
         "bitcoincash:qpdh9s677ya8tnx7zdhfrn8qfyvy22wj4qa7nwqa5v"
@@ -59,7 +68,7 @@ describe(`#Blockbook`, () => {
       ])
       assert.isArray(result[0].txids)
     })
-
+    /*
     it(`should throw an error for improper input`, async () => {
       try {
         const addr = 12345
@@ -90,8 +99,9 @@ describe(`#Blockbook`, () => {
         assert.include(err.error, "Array too large")
       }
     })
+    */
   })
-
+  /*
   describe(`#utxo`, () => {
     it(`should GET utxos for a single address`, async () => {
       const addr = "bitcoincash:qrdka2205f4hyukutc2g0s6lykperc8nsu5u2ddpqf"
@@ -246,36 +256,5 @@ describe("#utxo", () => {
       .then(done, done)
   })
 })
-
-describe("#unconfirmed", () => {
-  let sandbox
-  beforeEach(() => (sandbox = sinon.sandbox.create()))
-  afterEach(() => sandbox.restore())
-
-  it("should get unconfirmed transactions", done => {
-    const data = [
-      {
-        txid:
-          "e0aadd861a06993e39af932bb0b9ad69e7b37ef5843a13c6724789e1c94f3513",
-        vout: 1,
-        scriptPubKey: "76a914a0f531f4ff810a415580c12e54a7072946bb927e88ac",
-        amount: 0.00008273,
-        satoshis: 8273,
-        confirmations: 0,
-        ts: 1526680569,
-        legacyAddress: "1Fg4r9iDrEkCcDmHTy2T79EusNfhyQpu7W",
-        cashAddress: "bitcoincash:qzs02v05l7qs5s24srqju498qu55dwuj0cx5ehjm2c"
-      }
-    ]
-    const resolved = new Promise(r => r({ data: data }))
-    sandbox.stub(axios, "get").returns(resolved)
-
-    bchjs.Insight.Address.unconfirmed(
-      "bitcoincash:qzs02v05l7qs5s24srqju498qu55dwuj0cx5ehjm2c"
-    )
-      .then(result => {
-        assert.deepEqual(data, result)
-      })
-      .then(done, done)
-  })
+*/
 })

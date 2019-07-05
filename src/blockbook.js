@@ -22,6 +22,7 @@ class Blockbook {
 
         // Handle array of addresses.
       } else if (Array.isArray(address)) {
+        /*
         const options = {
           method: "POST",
           url: `${this.restURL}blockbook/balance`,
@@ -30,6 +31,10 @@ class Blockbook {
           }
         }
         const response = await axios(options)
+        */
+        const response = await axios.post(`${this.restURL}blockbook/balance`, {
+          addresses: address
+        })
 
         return response.data
       }
