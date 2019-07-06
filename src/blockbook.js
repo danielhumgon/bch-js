@@ -22,16 +22,6 @@ class Blockbook {
 
         // Handle array of addresses.
       } else if (Array.isArray(address)) {
-        /*
-        const options = {
-          method: "POST",
-          url: `${this.restURL}blockbook/balance`,
-          data: {
-            addresses: address
-          }
-        }
-        const response = await axios(options)
-        */
         const response = await axios.post(`${this.restURL}blockbook/balance`, {
           addresses: address
         })
@@ -55,14 +45,9 @@ class Blockbook {
         )
         return response.data
       } else if (Array.isArray(address)) {
-        const options = {
-          method: "POST",
-          url: `${this.restURL}blockbook/utxos`,
-          data: {
-            addresses: address
-          }
-        }
-        const response = await axios(options)
+        const response = await axios.post(`${this.restURL}blockbook/utxos`, {
+          addresses: address
+        })
 
         return response.data
       }
