@@ -1,11 +1,11 @@
 /*
   This library interacts with the REST API endpoints in bch-api that communicate
-  with the Blockbook API.
+  with the Bitcore API.
 */
 
 const axios = require("axios")
 
-class Blockbook {
+class Bitcore {
   constructor(restURL) {
     this.restURL = restURL
   }
@@ -15,14 +15,14 @@ class Blockbook {
       // Handle single address.
       if (typeof address === "string") {
         const response = await axios.get(
-          `${this.restURL}blockbook/balance/${address}`
+          `${this.restURL}bitcore/balance/${address}`
         )
 
         return response.data
 
         // Handle array of addresses.
       } else if (Array.isArray(address)) {
-        const response = await axios.post(`${this.restURL}blockbook/balance`, {
+        const response = await axios.post(`${this.restURL}bitcore/balance`, {
           addresses: address
         })
 
@@ -41,13 +41,11 @@ class Blockbook {
       // Handle single address.
       if (typeof address === "string") {
         const response = await axios.get(
-          `${this.restURL}blockbook/utxos/${address}`
+          `${this.restURL}bitcore/utxos/${address}`
         )
         return response.data
-
-        // Handle array of addresses.
       } else if (Array.isArray(address)) {
-        const response = await axios.post(`${this.restURL}blockbook/utxos`, {
+        const response = await axios.post(`${this.restURL}bitcore/utxos`, {
           addresses: address
         })
 
@@ -62,4 +60,4 @@ class Blockbook {
   }
 }
 
-module.exports = Blockbook
+module.exports = Bitcore

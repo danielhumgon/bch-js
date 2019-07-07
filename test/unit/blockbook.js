@@ -143,14 +143,11 @@ describe(`#Blockbook`, () => {
       //console.log(`result: ${JSON.stringify(result, null, 2)}`)
 
       assert.isArray(result)
-      assert.hasAnyKeys(result[0], ["utxos", "legacyAddress", "cashAddress"])
-      assert.isArray(result[0].utxos)
-
-      assert.hasAnyKeys(result[0].utxos[0], [
+      assert.isArray(result[0])
+      assert.hasAnyKeys(result[0][0], [
         "txid",
         "vout",
-        "amount",
-        "satoshis",
+        "value",
         "height",
         "confirmations"
       ])
@@ -165,7 +162,7 @@ describe(`#Blockbook`, () => {
 
         const addr = 12345
 
-        await bchjs.Insight.Address.utxo(addr)
+        await bchjs.Blockbook.utxo(addr)
         assert.equal(true, false, "Unexpected result!")
       } catch (err) {
         //console.log(`err: `, err)
@@ -182,7 +179,7 @@ describe(`#Blockbook`, () => {
         for (let i = 0; i < 25; i++)
           addr.push("bitcoincash:qrdka2205f4hyukutc2g0s6lykperc8nsu5u2ddpqf")
 
-        const result = await bchjs.Insight.Address.utxo(addr)
+        const result = await bchjs.Blockbook.utxo(addr)
 
         console.log(`result: ${util.inspect(result)}`)
         assert.equal(true, false, "Unexpected result!")

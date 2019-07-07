@@ -1,5 +1,5 @@
 /*
-  Integration tests for the Blockbook library.
+  Integration tests for the Bitcore library.
 
 */
 
@@ -17,28 +17,15 @@ util.inspect.defaultOptions = {
   depth: 3
 }
 
-describe(`#Blockbook`, () => {
+describe(`#Bitcore`, () => {
   describe(`#Balance`, () => {
     it(`should GET balance for a single address`, async () => {
       const addr = "bitcoincash:qrdka2205f4hyukutc2g0s6lykperc8nsu5u2ddpqf"
 
-      const result = await bchjs.Blockbook.balance(addr)
+      const result = await bchjs.Bitcore.balance(addr)
       //console.log(`result: ${util.inspect(result)}`)
 
-      assert.hasAnyKeys(result, [
-        "page",
-        "totalPages",
-        "itemsOnPage",
-        "address",
-        "balance",
-        "totalReceived",
-        "totalSent",
-        "unconfirmedBalance",
-        "unconfirmedTxs",
-        "txs",
-        "txids"
-      ])
-      assert.isArray(result.txids)
+      assert.hasAnyKeys(result, ["confirmed", "unconfirmed", "balance"])
     })
 
     it(`should POST request balances for an array of addresses`, async () => {
@@ -47,31 +34,18 @@ describe(`#Blockbook`, () => {
         "bitcoincash:qpdh9s677ya8tnx7zdhfrn8qfyvy22wj4qa7nwqa5v"
       ]
 
-      const result = await bchjs.Blockbook.balance(addr)
+      const result = await bchjs.Bitcore.balance(addr)
       //console.log(`result: ${util.inspect(result)}`)
 
       assert.isArray(result)
-      assert.hasAnyKeys(result[0], [
-        "page",
-        "totalPages",
-        "itemsOnPage",
-        "address",
-        "balance",
-        "totalReceived",
-        "totalSent",
-        "unconfirmedBalance",
-        "unconfirmedTxs",
-        "txs",
-        "txids"
-      ])
-      assert.isArray(result[0].txids)
+      assert.hasAnyKeys(result[0], ["confirmed", "unconfirmed", "balance"])
     })
 
     it(`should throw an error for improper input`, async () => {
       try {
         const addr = 12345
 
-        await bchjs.Blockbook.balance(addr)
+        await bchjs.Bitcore.balance(addr)
         assert.equal(true, false, "Unexpected result!")
       } catch (err) {
         //console.log(`err: `, err)
@@ -88,7 +62,7 @@ describe(`#Blockbook`, () => {
         for (let i = 0; i < 25; i++)
           addr.push("bitcoincash:qrdka2205f4hyukutc2g0s6lykperc8nsu5u2ddpqf")
 
-        const result = await bchjs.Blockbook.balance(addr)
+        const result = await bchjs.Bitcore.balance(addr)
 
         console.log(`result: ${util.inspect(result)}`)
         assert.equal(true, false, "Unexpected result!")
@@ -103,15 +77,23 @@ describe(`#Blockbook`, () => {
     it(`should GET utxos for a single address`, async () => {
       const addr = "bitcoincash:qrdka2205f4hyukutc2g0s6lykperc8nsu5u2ddpqf"
 
-      const result = await bchjs.Blockbook.utxo(addr)
+      const result = await bchjs.Bitcore.utxo(addr)
       //console.log(`result: ${JSON.stringify(result, null, 2)}`)
 
       assert.isArray(result)
       assert.hasAnyKeys(result[0], [
-        "txid",
-        "vout",
+        "_id",
+        "chain",
+        "network",
+        "coinbase",
+        "mintIndex",
+        "spentTxid",
+        "mintTxid",
+        "mintHeight",
+        "spentHeight",
+        "address",
+        "script",
         "value",
-        "height",
         "confirmations"
       ])
     })
@@ -122,16 +104,24 @@ describe(`#Blockbook`, () => {
         "bitcoincash:qpdh9s677ya8tnx7zdhfrn8qfyvy22wj4qa7nwqa5v"
       ]
 
-      const result = await bchjs.Blockbook.utxo(addr)
+      const result = await bchjs.Bitcore.utxo(addr)
       //console.log(`result: ${JSON.stringify(result, null, 2)}`)
 
       assert.isArray(result)
       assert.isArray(result[0])
       assert.hasAnyKeys(result[0][0], [
-        "txid",
-        "vout",
+        "_id",
+        "chain",
+        "network",
+        "coinbase",
+        "mintIndex",
+        "spentTxid",
+        "mintTxid",
+        "mintHeight",
+        "spentHeight",
+        "address",
+        "script",
         "value",
-        "height",
         "confirmations"
       ])
     })
@@ -140,7 +130,7 @@ describe(`#Blockbook`, () => {
       try {
         const addr = 12345
 
-        await bchjs.Blockbook.utxo(addr)
+        await bchjs.Bitcore.utxo(addr)
         assert.equal(true, false, "Unexpected result!")
       } catch (err) {
         //console.log(`err: `, err)
@@ -157,7 +147,7 @@ describe(`#Blockbook`, () => {
         for (let i = 0; i < 25; i++)
           addr.push("bitcoincash:qrdka2205f4hyukutc2g0s6lykperc8nsu5u2ddpqf")
 
-        const result = await bchjs.Blockbook.utxo(addr)
+        const result = await bchjs.Bitcore.utxo(addr)
         //console.log(`result: ${util.inspect(result)}`)
 
         assert.equal(true, false, "Unexpected result!")
