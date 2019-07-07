@@ -22,6 +22,9 @@ const InsightAddress = require("./insight/address")
 const InsightBlock = require("./insight/block")
 const InsightTransaction = require("./insight/transaction")
 
+const Blockbook = require("./blockbook")
+const Bitcore = require("./bitcore")
+
 class BCHJS {
   constructor(config) {
     if (config && config.restURL && config.restURL !== "")
@@ -36,8 +39,16 @@ class BCHJS {
     this.Insight.Block = new InsightBlock(this.restURL)
     this.Insight.Transaction = new InsightTransaction(this.restURL)
 
+    // Populate Blockbook endpoints.
+    this.Blockbook = new Blockbook(this.restURL)
+
+    // Populate Bitcore endpoints
+    this.Bitcore = new Bitcore(this.restURL)
+
     // Populate Full Node
     this.Control = new Control(this.restURL)
+    this.Mining = new Mining(this.restURL)
+    this.RawTransactions = new RawTransactions(this.restURL)
 
     // Populate utility functions
     this.Address = new Address(this.restURL)
@@ -48,10 +59,8 @@ class BCHJS {
     this.ECPair.setAddress(this.Address)
     this.Generating = new Generating(this.restURL)
     this.HDNode = new HDNode(this.Address)
-    this.Mining = new Mining(this.restURL)
     this.Mnemonic = new Mnemonic(this.Address)
     this.Price = new Price()
-    this.RawTransactions = new RawTransactions(this.restURL)
     this.Script = new Script()
     this.TransactionBuilder = TransactionBuilder
     this.TransactionBuilder.setAddress(this.Address)
