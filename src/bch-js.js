@@ -30,8 +30,8 @@ class BCHJS {
     if (config && config.restURL && config.restURL !== "")
       this.restURL = config.restURL
     //else this.restURL = "https://rest.bitcoin.com/v2/"
-    //else this.restURL = "http://localhost:3000/v2/"
     else this.restURL = "http://localhost:3000/v3/"
+    //else this.restURL = "http://192.168.0.36:12400/v3/"
 
     // Populate the Insight API endpoints.
     this.Insight = {}
