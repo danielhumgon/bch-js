@@ -16,7 +16,7 @@ util.inspect.defaultOptions = {
   depth: 3
 }
 
-describe(`#block`, () => {
+describe(`#Insight block`, () => {
   describe(`#detailsByHeight`, () => {
     it(`should GET block details for a given Height`, async () => {
       const block = 500000

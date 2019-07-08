@@ -16,7 +16,7 @@ util.inspect.defaultOptions = {
   depth: 3
 }
 
-describe(`#Transaction`, () => {
+describe(`#Insight Transaction`, () => {
   describe(`#details`, () => {
     it(`should GET details for a given txid`, async () => {
       const txid =
