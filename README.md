@@ -6,7 +6,8 @@
 
 This is an [ECMAScript 2017 JavaScript](https://en.wikipedia.org/wiki/ECMAScript#8th_Edition_-_ECMAScript_2017) fork of
 the [BITBOX SDK](https://github.com/Bitcoin-com/bitbox-sdk) maintained
-by Bitcoin.com. It was forked 5/9/19. This fork removes bable, typescript, and
+by Bitcoin.com. It was forked 5/9/19 just prior to the v7.0.0 release.
+This fork removes bable, typescript, and
 flow as dependencies. The code base is pure JavaScript, tested against
 [node.js v10 LTS](https://nodejs.org/en/).
 This removes the time-lag in compiling the library and also means that error messages
