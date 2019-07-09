@@ -6,7 +6,8 @@
 
 This is an [ECMAScript 2017 JavaScript](https://en.wikipedia.org/wiki/ECMAScript#8th_Edition_-_ECMAScript_2017) fork of
 the [BITBOX SDK](https://github.com/Bitcoin-com/bitbox-sdk) maintained
-by Bitcoin.com. It was forked 5/9/19 just prior to the v7.0.0 release.
+by Bitcoin.com. It was forked 5/9/19 just prior to the v7.0.0 release of
+BITBOX-SDK.
 This fork removes bable, typescript, and
 flow as dependencies. The code base is pure JavaScript, tested against
 [node.js v10 LTS](https://nodejs.org/en/).
@@ -55,6 +56,6 @@ if dependencies are pulled from npm or GitHub.
   - without node_modules folder: QmQFHfbBQdEHfhtiRLbXtX1NcgnfL45hZb7TbQimTXAuzG (4 MB)
   - with node_modules folder: QmXq9Ds6Qdkg9xbRhcF8pay9KabA6QN2y7bx3wvSqiXifk (107 MB)
 
-- v7.0.0 - refactored to pure JavaScript:
+- v1.0.0 - refactored to pure JavaScript:
   - without node_modules folder: QmNjFsiTZRMAUa9rZpXqZqivv9JLaNicwLSPHjyLB7PVDk (1 MB)
   - with node_modules folder: Qma9ScApwBtuL7dpdSk7jpBFTxbqRdiR921WjyP75SU7bT (100 MB)
