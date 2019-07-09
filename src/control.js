@@ -14,6 +14,16 @@ class Control {
     }
   }
 
+  async getNetworkInfo() {
+    try {
+      const response = await axios.get(`${this.restURL}control/getNetworkInfo`)
+      return response.data
+    } catch (error) {
+      if (error.response && error.response.data) throw error.response.data
+      else throw error
+    }
+  }
+
   async getMemoryInfo() {
     try {
       const response = await axios.get(`${this.restURL}control/getMemoryInfo`)
