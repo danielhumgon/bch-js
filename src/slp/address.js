@@ -1,8 +1,5 @@
 const BCHJSAddress = require("../address")
 
-const BCHJS = require("../bch-js")
-const bchjs = new BCHJS()
-
 const utils = require("slpjs").Utils
 
 class Address extends BCHJSAddress {
@@ -28,19 +25,19 @@ class Address extends BCHJSAddress {
   toLegacyAddress(address) {
     this._ensureValidAddress(address)
     const cashAddr = utils.toCashAddress(address)
-    return bchjs.Address.toLegacyAddress(cashAddr)
+    return this.toLegacyAddress(cashAddr)
   }
 
   isLegacyAddress(address) {
     this._ensureValidAddress(address)
-    return bchjs.Address.isLegacyAddress(address)
+    return this.isLegacyAddress(address)
   }
 
   isCashAddress(address) {
     this._ensureValidAddress(address)
     if (utils.isSlpAddress(address)) return false
 
-    return bchjs.Address.isCashAddress(address)
+    return this.isCashAddress(address)
   }
 
   isSLPAddress(address) {
@@ -51,44 +48,44 @@ class Address extends BCHJSAddress {
   isMainnetAddress(address) {
     this._ensureValidAddress(address)
     const cashaddr = utils.toCashAddress(address)
-    return bchjs.Address.isMainnetAddress(cashaddr)
+    return this.isMainnetAddress(cashaddr)
   }
 
   isTestnetAddress(address) {
     this._ensureValidAddress(address)
     const cashAddr = utils.toCashAddress(address)
-    return bchjs.Address.isTestnetAddress(cashAddr)
+    return this.isTestnetAddress(cashAddr)
   }
 
   isP2PKHAddress(address) {
     this._ensureValidAddress(address)
     const cashAddr = utils.toCashAddress(address)
-    return bchjs.Address.isP2PKHAddress(cashAddr)
+    return this.isP2PKHAddress(cashAddr)
   }
 
   isP2SHAddress(address) {
     this._ensureValidAddress(address)
     const cashAddr = utils.toCashAddress(address)
-    return bchjs.Address.isP2SHAddress(cashAddr)
+    return this.isP2SHAddress(cashAddr)
   }
 
   detectAddressFormat(address) {
     this._ensureValidAddress(address)
     if (utils.isSlpAddress(address)) return "slpaddr"
 
-    return bchjs.Address.detectAddressFormat(address)
+    return this.detectAddressFormat(address)
   }
 
   detectAddressNetwork(address) {
     this._ensureValidAddress(address)
     const cashAddr = utils.toCashAddress(address)
-    return bchjs.Address.detectAddressNetwork(cashAddr)
+    return this.detectAddressNetwork(cashAddr)
   }
 
   detectAddressType(address) {
     this._ensureValidAddress(address)
     const cashAddr = utils.toCashAddress(address)
-    return bchjs.Address.detectAddressType(cashAddr)
+    return this.detectAddressType(cashAddr)
   }
   /*
   async details(address) {

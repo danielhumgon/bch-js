@@ -17,6 +17,7 @@ const Price = require("./price")
 const Socket = require("./socket")
 const Wallet = require("./wallet")
 const Schnorr = require("./schnorr")
+const SLP = require("./slp/slp")
 
 const InsightAddress = require("./insight/address")
 const InsightBlock = require("./insight/block")
@@ -72,6 +73,8 @@ class BCHJS {
     this.Socket = Socket
     this.Wallet = Wallet
     this.Schnorr = new Schnorr(this.restURL)
+
+    this.SLP = new SLP(this.restURL)
   }
 }
 
