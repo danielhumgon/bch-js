@@ -7,7 +7,7 @@ const sinon = require("sinon")
 describe("#Generating", () => {
   describe("#generateToAddress", () => {
     let sandbox
-    beforeEach(() => (sandbox = sinon.sandbox.create()))
+    beforeEach(() => (sandbox = sinon.createSandbox()))
     afterEach(() => sandbox.restore())
 
     it("should generate", done => {

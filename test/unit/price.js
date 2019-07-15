@@ -9,7 +9,7 @@ describe("#Price", () => {
   describe("#current", () => {
     describe("#single currency", () => {
       let sandbox
-      beforeEach(() => (sandbox = sinon.sandbox.create()))
+      beforeEach(() => (sandbox = sinon.createSandbox()))
       afterEach(() => sandbox.restore())
 
       it("should get current price for single currency", done => {

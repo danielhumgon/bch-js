@@ -6,7 +6,7 @@ const sinon = require("sinon")
 
 describe("#details", () => {
   let sandbox
-  beforeEach(() => (sandbox = sinon.sandbox.create()))
+  beforeEach(() => (sandbox = sinon.createSandbox()))
   afterEach(() => sandbox.restore())
 
   it("should get details", done => {
@@ -43,7 +43,7 @@ describe("#details", () => {
 
 describe("#utxo", () => {
   let sandbox
-  beforeEach(() => (sandbox = sinon.sandbox.create()))
+  beforeEach(() => (sandbox = sinon.createSandbox()))
   afterEach(() => sandbox.restore())
 
   it("should get utxo", done => {
@@ -88,7 +88,7 @@ describe("#utxo", () => {
 
 describe("#unconfirmed", () => {
   let sandbox
-  beforeEach(() => (sandbox = sinon.sandbox.create()))
+  beforeEach(() => (sandbox = sinon.createSandbox()))
   afterEach(() => sandbox.restore())
 
   it("should get unconfirmed transactions", done => {
