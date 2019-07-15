@@ -1,5 +1,5 @@
-const BCHJS = require("../bch-js")
-const bchjs = new BCHJS()
+//const BCHJS = require("../bch-js")
+//const bchjs = new BCHJS()
 
 const BCHJSECPair = require("../ecpair")
 
@@ -14,7 +14,7 @@ class ECPair extends BCHJSECPair {
   */
 
   static toSLPAddress(ecpair) {
-    const slpAddress = utils.toSlpAddress(bchjs.ECPair.toCashAddress(ecpair))
+    const slpAddress = utils.toSlpAddress(this.toCashAddress(ecpair))
     return slpAddress
   }
 }

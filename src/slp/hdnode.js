@@ -1,7 +1,7 @@
 const BCHJSHDNode = require("../hdnode")
 
-const BCHJS = require("../bch-js")
-const bchjs = new BCHJS()
+//const BCHJS = require("../bch-js")
+//const bchjs = new BCHJS()
 
 const utils = require("slpjs").Utils
 

@@ -17,6 +17,7 @@ const Price = require("./price")
 const Socket = require("./socket")
 const Wallet = require("./wallet")
 const Schnorr = require("./schnorr")
+const SLP = require("./slp/slp")
 
 const InsightAddress = require("./insight/address")
 const InsightBlock = require("./insight/block")
@@ -27,11 +28,15 @@ const Bitcore = require("./bitcore")
 
 class BCHJS {
   constructor(config) {
-    if (config && config.restURL && config.restURL !== "")
+    // Try to retrieve the REST API URL from different sources.
+    if (config && config.restURL && config.restURL !== "") {
       this.restURL = config.restURL
-    //else this.restURL = "https://rest.bitcoin.com/v2/"
-    else this.restURL = "http://localhost:3000/v3/"
-    //else this.restURL = "http://192.168.0.36:12400/v3/"
+    } else if (process.env.RESTURL && process.env.RESTURL !== "") {
+      this.restURL = process.env.RESTURL
+    } else {
+      //this.restURL = "http://localhost:3000/v3/"
+      this.restURL = "http://192.168.0.36:12400/v3/"
+    }
 
     // Populate the Insight API endpoints.
     this.Insight = {}
@@ -68,6 +73,8 @@ class BCHJS {
     this.Socket = Socket
     this.Wallet = Wallet
     this.Schnorr = new Schnorr(this.restURL)
+
+    this.SLP = new SLP(this.restURL)
   }
 }
 
