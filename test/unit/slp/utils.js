@@ -1,23 +1,25 @@
 const assert = require("assert")
 const assert2 = require("chai").assert
-const slp = require("./../lib/SLP")
-const SLP = new slp()
+
+const SLP = require("../../../src/slp/slp")
+const slp = new SLP("http://localhost:3000/v3/")
+
 const nock = require("nock") // http call mocking
 const sinon = require("sinon")
 const axios = require("axios")
 
 // Mock data used for unit tests
-const mockData = require("./fixtures/mock-utils")
+const mockData = require("../fixtures/slp/mock-utils")
 
 // Default to unit tests unless some other value for TEST is passed.
 if (!process.env.TEST) process.env.TEST = "unit"
-const SERVER = "https://rest.bitcoin.com"
+const SERVER = slp.restURL
 
 // Used for debugging and iterrogating JS objects.
 const util = require("util")
 util.inspect.defaultOptions = { depth: 1 }
 
-describe("#Utils", () => {
+describe("#SLP Utils", () => {
   let sandbox
 
   beforeEach(() => {
@@ -44,7 +46,7 @@ describe("#Utils", () => {
           .reply(200, mockData.mockList)
       }
 
-      const list = await SLP.Utils.list()
+      const list = await slp.Utils.list()
       //console.log(`list: ${JSON.stringify(list, null, 2)}`)
 
       assert2.isArray(list)
@@ -83,7 +85,7 @@ describe("#Utils", () => {
       const tokenId =
         "4276533bb702e7f8c9afd8aa61ebf016e95011dc3d54e55faa847ac1dd461e84"
 
-      const list = await SLP.Utils.list(tokenId)
+      const list = await slp.Utils.list(tokenId)
       //console.log(`list: ${JSON.stringify(list, null, 2)}`)
 
       assert2.hasAllKeys(list, [
@@ -124,7 +126,7 @@ describe("#Utils", () => {
         "b3f4f132dc3b9c8c96316346993a8d54d729715147b7b11aa6c8cd909e955313"
       ]
 
-      const list = await SLP.Utils.list(tokenIds)
+      const list = await slp.Utils.list(tokenIds)
       // console.log(`list: ${JSON.stringify(list, null, 2)}`)
 
       assert2.hasAllKeys(list[0], [
@@ -165,7 +167,7 @@ describe("#Utils", () => {
       //  .stub(SLP.Utils, "balancesForAddress")
       //  .resolves(mockData.balancesForAddress)
 
-      const balances = await SLP.Utils.balancesForAddress(
+      const balances = await slp.Utils.balancesForAddress(
         "simpleledger:qzv3zz2trz0xgp6a96lu4m6vp2nkwag0kvyucjzqt9"
       )
       // console.log(`balances: ${JSON.stringify(balances, null, 2)}`)
@@ -187,7 +189,7 @@ describe("#Utils", () => {
       if (process.env.TEST === "unit")
         sandbox.stub(axios, "get").resolves({ data: mockData.mockBalance })
 
-      const balance = await SLP.Utils.balance(
+      const balance = await slp.Utils.balance(
         "simpleledger:qzv3zz2trz0xgp6a96lu4m6vp2nkwag0kvyucjzqt9",
         "df808a41672a0a0ae6475b44f272a107bc9961b90f29dc918d71301f24fe92fb"
       )
@@ -206,7 +208,7 @@ describe("#Utils", () => {
           .reply(200, mockData.mockIsValidTxid)
       }
 
-      const isValid = await SLP.Utils.validateTxid(
+      const isValid = await slp.Utils.validateTxid(
         "df808a41672a0a0ae6475b44f272a107bc9961b90f29dc918d71301f24fe92fb"
       )
       assert.deepEqual(isValid, [
@@ -228,7 +230,7 @@ describe("#Utils", () => {
           .reply(200, mockData.mockBalancesForToken)
       }
 
-      const balances = await SLP.Utils.balancesForToken(
+      const balances = await slp.Utils.balancesForToken(
         "df808a41672a0a0ae6475b44f272a107bc9961b90f29dc918d71301f24fe92fb"
       )
       assert2.hasAnyKeys(balances[0], ["tokenBalance", "slpAddress"])
@@ -244,7 +246,7 @@ describe("#Utils", () => {
           .reply(200, mockData.mockTokenStats)
       }
 
-      const tokenStats = await SLP.Utils.tokenStats(
+      const tokenStats = await slp.Utils.tokenStats(
         "df808a41672a0a0ae6475b44f272a107bc9961b90f29dc918d71301f24fe92fb"
       )
       assert2.hasAnyKeys(tokenStats, [
@@ -273,7 +275,7 @@ describe("#Utils", () => {
           .reply(200, mockData.mockTransactions)
       }
 
-      const transactions = await SLP.Utils.transactions(
+      const transactions = await slp.Utils.transactions(
         "495322b37d6b2eae81f045eda612b95870a0c2b6069c58f70cf8ef4e6a9fd43a",
         "simpleledger:qrhvcy5xlegs858fjqf8ssl6a4f7wpstaqnt0wauwu"
       )
@@ -290,7 +292,7 @@ describe("#Utils", () => {
           .reply(200, mockData.mockBurnTotal)
       }
 
-      const burnTotal = await SLP.Utils.burnTotal(
+      const burnTotal = await slp.Utils.burnTotal(
         "c7078a6c7400518a513a0bde1f4158cf740d08d3b5bfb19aa7b6657e2f4160de"
       )
       //console.log(`burnTotal: ${JSON.stringify(burnTotal, null, 2)}`)

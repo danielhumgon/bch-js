@@ -22,6 +22,8 @@ class Utils {
       path = `${this.restURL}slp/list`
     }
 
+    //console.log(`path: ${path}`)
+
     try {
       let response
       if (method === "get") {

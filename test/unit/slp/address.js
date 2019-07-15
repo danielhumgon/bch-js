@@ -85,7 +85,7 @@ const SLP_TESTNET_ADDRESSES_NO_PREFIX = SLP_TESTNET_ADDRESSES.map(address => {
   return parts[1]
 })
 */
-describe("#Address", () => {
+describe("#SLP Address", () => {
   describe("#mainnet", () => {
     describe("#toLegacyAddress", () => {
       it("should convert mainnet legacy address format to itself correctly", () => {

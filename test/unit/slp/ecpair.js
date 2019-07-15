@@ -4,7 +4,7 @@ const assert = require("assert")
 const SLP = require("../../../src/slp/slp")
 const slp = new SLP()
 
-describe("#ECPair", () => {
+describe("#SLP ECPair", () => {
   describe("#toSLPAddress", () => {
     it(`should return slp address for ecpair`, async () => {
       fixtures.wif.forEach((wif, index) => {
