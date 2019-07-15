@@ -1,9 +1,9 @@
 const assert = require("assert")
 
-const slp = require("../../../src/slp/slp")
+const slp = require("../../src/slp/slp")
 const SLP = new slp()
 
-const fixtures = require("../fixtures/slp/address.json")
+const fixtures = require("./fixtures/slp/address.json")
 //const axios = require("axios")
 //const sinon = require("sinon")
 

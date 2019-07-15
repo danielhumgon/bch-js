@@ -1,7 +1,7 @@
 const assert = require("assert")
 const assert2 = require("chai").assert
 
-const SLP = require("../../../src/slp/slp")
+const SLP = require("../../src/slp/slp")
 const slp = new SLP("http://localhost:3000/v3/")
 
 const nock = require("nock") // http call mocking
@@ -9,7 +9,7 @@ const sinon = require("sinon")
 const axios = require("axios")
 
 // Mock data used for unit tests
-const mockData = require("../fixtures/slp/mock-utils")
+const mockData = require("./fixtures/slp/mock-utils")
 
 // Default to unit tests unless some other value for TEST is passed.
 if (!process.env.TEST) process.env.TEST = "unit"

@@ -1,7 +1,7 @@
-const fixtures = require("../fixtures/slp/ecpair.json")
+const fixtures = require("./fixtures/slp/ecpair.json")
 const assert = require("assert")
 
-const SLP = require("../../../src/slp/slp")
+const SLP = require("../../src/slp/slp")
 const slp = new SLP()
 
 describe("#SLP ECPair", () => {
