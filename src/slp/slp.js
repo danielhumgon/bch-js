@@ -15,7 +15,7 @@ class SLP {
     this.restURL = restURL
 
     this.Address = new Address(restURL)
-    this.ECPair = new ECPair()
+    this.ECPair = ECPair
     this.HDNode = new HDNode(restURL)
     this.TokenType1 = new TokenType1(restURL)
     this.Utils = new Utils(restURL)

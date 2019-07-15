@@ -4,14 +4,6 @@ const assert = require("assert")
 const SLP = require("../../../src/slp/slp")
 const slp = new SLP()
 
-// console.log(SLP)
-
-// Used for debugging and iterrogating JS objects.
-const util = require("util")
-util.inspect.defaultOptions = { depth: 1 }
-
-console.log(`SLP.ECPair: ${util.inspect(SLP.ECPair)}`)
-
 describe("#ECPair", () => {
   describe("#toSLPAddress", () => {
     it(`should return slp address for ecpair`, async () => {
