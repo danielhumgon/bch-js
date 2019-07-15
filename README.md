@@ -50,7 +50,7 @@ Extensive documentation available at:
 I will periodically publish IPFS releases of this repository, including all
 dependencies in the `node_modules` folder. This ensures working copies of this
 repository can be retrieved in case there is any drift in dependency files, or
-if dependencies are pulled from npm or GitHub.
+if dependencies are pulled from npm or GitHub. 
 
 - Initial fork on 5/9/2019:
   - without node_modules folder: QmQFHfbBQdEHfhtiRLbXtX1NcgnfL45hZb7TbQimTXAuzG (4 MB)
