@@ -12,4 +12,4 @@ class ECPair extends BCHJSECPair {
   }
 }
 
-export default ECPair
+module.exports = ECPair

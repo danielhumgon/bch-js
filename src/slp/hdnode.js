@@ -25,4 +25,4 @@ class HDNode extends BCHJSHDNode {
   }
 }
 
-export default HDNode
+module.exports = HDNode

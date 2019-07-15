@@ -178,4 +178,4 @@ class Address extends BCHJSAddress {
   }
 }
 
-export default Address
+module.exports = Address

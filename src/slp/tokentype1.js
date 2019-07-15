@@ -327,4 +327,4 @@ class TokenType1 {
   }
 }
 
-export default TokenType1
+module.exports = TokenType1
