@@ -8,6 +8,29 @@ class Address {
     this.restURL = restURL
   }
 
+  /**
+   * @api Address.toLegacyAddress() Convert to Legacy Address
+   * @apiName toLegacyAddress
+   * @apiGroup Address
+   * @apiDescription Convert cashaddr to legacy address format
+   *
+   * @apiExample Example usage:
+   * // mainnet w/ prefix
+   * bchjs.Address.toLegacyAddress('bitcoincash:qzm47qz5ue99y9yl4aca7jnz7dwgdenl85jkfx3znl')
+   * // 1HiaTupadqQN66Tvgt7QSE5Wg13BUy25eN
+   *
+   * // mainnet w/ no prefix
+   * bchjs.Address.toLegacyAddress('qzm47qz5ue99y9yl4aca7jnz7dwgdenl85jkfx3znl')
+   * // 1HiaTupadqQN66Tvgt7QSE5Wg13BUy25eN
+   *
+   * // testnet w/ prefix
+   * bitbox.Address.toLegacyAddress('bchtest:qph2v4mkxjgdqgmlyjx6njmey0ftrxlnggt9t0a6zy')
+   * // mqc1tmwY2368LLGktnePzEyPAsgADxbksi
+   *
+   * // testnet w/ no prefix
+   * bitbox.Address.toLegacyAddress('qph2v4mkxjgdqgmlyjx6njmey0ftrxlnggt9t0a6zy')
+   * // mqc1tmwY2368LLGktnePzEyPAsgADxbksi
+   */
   // Translate address from any address format into a specific format.
   toLegacyAddress(address) {
     const { prefix, type, hash } = this._decode(address)
@@ -44,6 +67,29 @@ class Address {
     return Bitcoin.address.toBase58Check(hashBuf, version)
   }
 
+  /**
+   * @api Address.toCashAddress() Convert to bitcoincash: format
+   * @apiName toCashAddress
+   * @apiGroup Address
+   * @apiDescription Convert legacy to cashAddress format
+   *
+   * @apiExample Example usage:
+   * // mainnet
+   * bchjs.Address.toCashAddress('1HiaTupadqQN66Tvgt7QSE5Wg13BUy25eN')
+   * // bitcoincash:qzm47qz5ue99y9yl4aca7jnz7dwgdenl85jkfx3znl
+   *
+   * // mainnet no prefix
+   * bchjs.Address.toCashAddress('1HiaTupadqQN66Tvgt7QSE5Wg13BUy25eN', false)
+   * // qzm47qz5ue99y9yl4aca7jnz7dwgdenl85jkfx3znl
+   *
+   * // tesnet
+   * bchjs.Address.toCashAddress('msDbtTj7kWXPpYaR7PQmMK84i66fJqQMLx')
+   * // bchtest:qzq9je6pntpva3wf6scr7mlnycr54sjgeqxgrr9ku3
+   *
+   * // testnet no prefix
+   * bchjs.Address.toCashAddress('msDbtTj7kWXPpYaR7PQmMK84i66fJqQMLx', false)
+   * // qzq9je6pntpva3wf6scr7mlnycr54sjgeqxgrr9ku3
+   */
   toCashAddress(address, prefix = true, regtest = false) {
     const decoded = this._decode(address)
 

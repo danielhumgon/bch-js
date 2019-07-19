@@ -78,6 +78,6 @@
   },
   "apidoc": {
     "title": "bch-js",
-    "url": "localhost:3000"
+    "url": "bchjs."
   }
 }
