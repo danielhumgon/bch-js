@@ -21,10 +21,11 @@ repository is for
 these marginalized developers. This fork will be maintained by
 me ([Chris Troutner](https://memo.cash/profile/1NpYaazpQ26KrMTeFf66zVKy6x9KzcLgTA)) as
 a hobby. There will most likely be a big lag when it comes to porting new
-features in BITBOX to this repository.
+features in BITBOX to this repository. *Pull Requests for new features
+and improved documentation are most welcome!*
 
 Whereas BITBOX SDK has a big focus on integrating the latest features in the
-the ecosystem, this BITBOX JS fork will remain relatively stable, integrating
+the ecosystem, this bch-js fork will remain relatively stable, integrating
 new features at a much slower pace.
 
 Major features of this fork:
@@ -36,21 +37,26 @@ automatically maintaining the latest, most secure dependencies.
 - [IPFS uploads](https://ipfs.io) of all files and dependencies, to backup
 dependencies in case they are ever inaccessible from GitHub or npm.
 
-## Original Documentation:
+## Documentation:
 
-Extensive documentation available at:
+Original documentation on BITBOX is available at:
 
 - [General docs](https://developer.bitcoin.com)
 - [BITBOX Introduction](https://developer.bitcoin.com/bitbox)
 - [BITBOX API Reference](https://developer.bitcoin.com/bitbox/docs/getting-started)
 - [BITBOX Examples](./examples)
 
+bch-js uses [APIDOC](http://apidocjs.com/) so that documentation and working code
+live in the same repository. To generate the documentation:
+- `npm run docs`
+- Open the generated `docs/index.html` file in a web browser.
+
 ## IPFS Releases
 
 I will periodically publish IPFS releases of this repository, including all
 dependencies in the `node_modules` folder. This ensures working copies of this
 repository can be retrieved in case there is any drift in dependency files, or
-if dependencies are pulled from npm or GitHub. 
+if dependencies are pulled from npm or GitHub.
 
 - Initial fork on 5/9/2019:
   - without node_modules folder: QmQFHfbBQdEHfhtiRLbXtX1NcgnfL45hZb7TbQimTXAuzG (4 MB)
