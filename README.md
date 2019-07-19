@@ -21,8 +21,8 @@ repository is for
 these marginalized developers. This fork will be maintained by
 me ([Chris Troutner](https://memo.cash/profile/1NpYaazpQ26KrMTeFf66zVKy6x9KzcLgTA)) as
 a hobby. There will most likely be a big lag when it comes to porting new
-features in BITBOX to this repository. *Pull Requests for new featurs are
-most welcome!*
+features in BITBOX to this repository. *Pull Requests for new features
+and improved documentation are most welcome!*
 
 Whereas BITBOX SDK has a big focus on integrating the latest features in the
 the ecosystem, this bch-js fork will remain relatively stable, integrating
