@@ -20,6 +20,7 @@
     "url": "git+https://github.com/christroutner/bch-js.git"
   },
   "dependencies": {
+    "apidoc": "^0.17.7",
     "assert": "^2.0.0",
     "axios": "^0.19.0",
     "bc-bip68": "^1.0.5",
@@ -74,5 +75,9 @@
     "prettier": "^1.18.2",
     "semantic-release": "^15.13.13",
     "sinon": "^7.3.2"
+  },
+  "apidoc": {
+    "title": "bch-js",
+    "url": "localhost:3000"
   }
 }
