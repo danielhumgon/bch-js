@@ -10,7 +10,8 @@
   "scripts": {
     "test": "nyc mocha --timeout 30000 test/unit",
     "test:integration": "mocha --timeout 30000 test/integration",
-    "coverage": "nyc report --reporter=text-lcov | coveralls"
+    "coverage": "nyc report --reporter=text-lcov | coveralls",
+    "docs": "./node_modules/.bin/apidoc -i src/ -o docs"
   },
   "license": "MIT",
   "homepage": "https://github.com/christroutner/bch-js",
