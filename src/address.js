@@ -113,14 +113,45 @@ class Address {
     const bytes = Bitcoin.address.fromBase58Check(legacyAddress)
     return bytes.hash.toString("hex")
   }
-
+  /**
+   * @api Address.hash160ToLegacy() Convert hash160 to legacy address.
+   * @apiName hash160ToLegacy
+   * @apiGroup Address
+   * @apiDescription Convert hash160 to legacy address.
+   *
+   * @apiExample Example usage:
+   * // legacy mainnet p2pkh
+   * bitbox.Address.hash160ToLegacy("573d93b475be4f1925f3b74ed951201b0147eac1")
+   * // 18xHZ8g2feo4ceejGpvzHkvXT79fi2ZdTG
+   *
+   * // legacy mainnet p2sh
+   * bitbox.Address.hash160ToLegacy("7dc85da64d1d93ef01ef62e0221c02f512e3942f", 0x05)
+   * // 3DA6RBcFgLwLTpnF6BRAee8w6a9H6JQLCm
+   *
+   * // legacy testnet p2pkh
+   * bitbox.Address.hash160ToLegacy("155187a3283b08b30519db50bc23bbba9f4b6657", 0x6f)
+   * // mhTg9sgNgvAGfmJs192oUzQWqAXHH5nqLE
+   */
   // Converts hash160 to Legacy Address
   hash160ToLegacy(hash160, network = Bitcoin.networks.bitcoin.pubKeyHash) {
     const buffer = Buffer.from(hash160, "hex")
     const legacyAddress = Bitcoin.address.toBase58Check(buffer, network)
     return legacyAddress
   }
-
+  /**
+   * @api Address.hash160ToCash() Convert hash160 to cash address.
+   * @apiName hash160ToCash
+   * @apiGroup Address
+   * @apiDescription Convert hash160 to cash address.
+   *
+   * @apiExample Example usage:
+   * bitbox.Address.hash160ToCash("573d93b475be4f1925f3b74ed951201b0147eac1")
+   * 'bitcoincash:qptnmya5wkly7xf97wm5ak23yqdsz3l2cyj7k9vyyh'
+   * bitbox.Address.hash160ToCash("7dc85da64d1d93ef01ef62e0221c02f512e3942f", 0x05)
+   * 'bitcoincash:pp7ushdxf5we8mcpaa3wqgsuqt639cu59ur5xu5fug'
+   * bitbox.Address.hash160ToCash("155187a3283b08b30519db50bc23bbba9f4b6657", 0x6f)
+   * 'bchtest:qq24rpar9qas3vc9r8d4p0prhwaf7jmx2u22nzt946'
+   */
   // Converts hash160 to Cash Address
   hash160ToCash(
     hash160,
@@ -215,20 +246,125 @@ class Address {
 
     throw new Error(`Invalid format : ${address}`)
   }
-
+  /**
+   * @api Address.isLegacyAddress() Detect if legacy address.
+   * @apiName isLegacyAddress
+   * @apiGroup Address
+   * @apiDescription Detect if legacy base58check encoded address.
+   *
+   * @apiExample Example usage:
+   *  // cashaddr
+   * bitbox.Address.isLegacyAddress('bitcoincash:qqfx3wcg8ts09mt5l3zey06wenapyfqq2qrcyj5x0s')
+   * // false
+   *
+   * // w/ no cashaddr prefix
+   * bitbox.Address.isLegacyAddress('qzm47qz5ue99y9yl4aca7jnz7dwgdenl85jkfx3znl')
+   * // false
+   *
+   * // legacy
+   * bitbox.Address.isLegacyAddress('1HiaTupadqQN66Tvgt7QSE5Wg13BUy25eN')
+   * // true
+   *
+   * // testnet w/ cashaddr prefix
+   * bitbox.Address.isLegacyAddress('bchtest:qph2v4mkxjgdqgmlyjx6njmey0ftrxlnggt9t0a6zy')
+   * // false
+   *
+   * // testnet w/ no cashaddr prefix
+   * bitbox.Address.isLegacyAddress('qph2v4mkxjgdqgmlyjx6njmey0ftrxlnggt9t0a6zy')
+   * // false
+   *
+   * // legacy testnet
+   * bitbox.Address.isLegacyAddress('mqc1tmwY2368LLGktnePzEyPAsgADxbksi')
+   * // true
+   */
   // Test for address format.
   isLegacyAddress(address) {
     return this.detectAddressFormat(address) === "legacy"
   }
-
+  /**
+   * @api Address.isCashAddress() Detect if cashAddr address.
+   * @apiName isCashAddress
+   * @apiGroup Address
+   * @apiDescription Detect if cashAddr encoded address.
+   *
+   * @apiExample Example usage:
+   * // mainnet cashaddr
+   * bitbox.Address.isCashAddress('bitcoincash:qqfx3wcg8ts09mt5l3zey06wenapyfqq2qrcyj5x0s')
+   * // true
+   *
+   * // mainnet w/ no cashaddr prefix
+   * bitbox.Address.isCashAddress('qqfx3wcg8ts09mt5l3zey06wenapyfqq2qrcyj5x0s')
+   * // true
+   *
+   * // mainnet legacy
+   * bitbox.Address.isCashAddress('18HEMuar5ZhXDFep1gEiY1eoPPcBLxfDxj')
+   * // false
+   *
+   * // testnet w/ cashaddr prefix
+   * bitbox.Address.isCashAddress('bchtest:qph2v4mkxjgdqgmlyjx6njmey0ftrxlnggt9t0a6zy')
+   * // true
+   *
+   * // testnet w/ no cashaddr prefix
+   * bitbox.Address.isCashAddress('qph2v4mkxjgdqgmlyjx6njmey0ftrxlnggt9t0a6zy')
+   * // true
+   *
+   * // testnet legacy
+   * bitbox.Address.isCashAddress('mqc1tmwY2368LLGktnePzEyPAsgADxbksi')
+   * // false
+   */
   isCashAddress(address) {
     return this.detectAddressFormat(address) === "cashaddr"
   }
 
+  /**
+   * @api Address.isHash160() Detect if an addess is a hash160.
+   * @apiName isHash160
+   * @apiGroup Address
+   * @apiDescription Detect if an addess is a hash160.
+   *
+   * @apiExample Example usage:
+   *  let hash160Address = '428df38e23fc879a25819427995c3e6355b12d33';
+   *  bitbox.Address.isHash160(hash160Address);
+   *  // true
+   *
+   *  let notHash160Address = 'bitcoincash:pz8a837lttkvjksg0jjmmulqvfkgpqrcdgufy8ns5s';
+   *  bitbox.Address.isHash160(notHash160Address);
+   *  // false
+   */
   isHash160(address) {
     return this.detectAddressFormat(address) === "hash160"
   }
-
+  /**
+   * @api Address.isMainnetAddress() Detect if mainnet address.
+   * @apiName isMainnetAddress
+   * @apiGroup Address
+   * @apiDescription Detect if mainnet address .
+   *
+   * @apiExample Example usage:
+   *  // mainnet cashaddr
+   * bitbox.Address.isMainnetAddress('bitcoincash:qqfx3wcg8ts09mt5l3zey06wenapyfqq2qrcyj5x0s')
+   * // true
+   *
+   * // mainnet cashaddr w/ no prefix
+   * bitbox.Address.isMainnetAddress('qqfx3wcg8ts09mt5l3zey06wenapyfqq2qrcyj5x0s')
+   * // true
+   *
+   * // mainnet legacy
+   * bitbox.Address.isMainnetAddress('14krEkSaKoTkbFT9iUCfUYARo4EXA8co6M')
+   * // true
+   *
+   * // testnet cashaddr
+   * bitbox.Address.isMainnetAddress('bchtest:qph2v4mkxjgdqgmlyjx6njmey0ftrxlnggt9t0a6zy')
+   * // false
+   *
+   * // testnet w/ no cashaddr prefix
+   * bitbox.Address.isMainnetAddress('qph2v4mkxjgdqgmlyjx6njmey0ftrxlnggt9t0a6zy')
+   * // false
+   *
+   * // testnet legacy
+   * bitbox.Address.isMainnetAddress('mqc1tmwY2368LLGktnePzEyPAsgADxbksi')
+   * // false
+   */
   // Test for address network.
   isMainnetAddress(address) {
     if (address[0] === "x") return true
@@ -236,34 +372,221 @@ class Address {
 
     return this.detectAddressNetwork(address) === "mainnet"
   }
-
+  /**
+   * @api Address.isTestnetAddress() Detect if testnet address.
+   * @apiName isTestnetAddress
+   * @apiGroup Address
+   * @apiDescription Detect if testnet address.
+   *
+   * @apiExample Example usage:
+   *   // cashaddr mainnet
+   * bitbox.Address.isTestnetAddress('bitcoincash:qqfx3wcg8ts09mt5l3zey06wenapyfqq2qrcyj5x0s')
+   * //false
+   *
+   * // w/ no cashaddr prefix
+   * bitbox.Address.isTestnetAddress('qqfx3wcg8ts09mt5l3zey06wenapyfqq2qrcyj5x0s')
+   * // false
+   *
+   * // legacy mainnet
+   * bitbox.Address.isTestnetAddress('14krEkSaKoTkbFT9iUCfUYARo4EXA8co6M')
+   * // false
+   *
+   * // cashaddr testnet
+   * bitbox.Address.isTestnetAddress('bchtest:qph2v4mkxjgdqgmlyjx6njmey0ftrxlnggt9t0a6zy')
+   * // true
+   *
+   * // testnet w/ no cashaddr prefix
+   * bitbox.Address.isTestnetAddress('qph2v4mkxjgdqgmlyjx6njmey0ftrxlnggt9t0a6zy')
+   * // true
+   *
+   * // testnet legacy
+   * bitbox.Address.isTestnetAddress('mqc1tmwY2368LLGktnePzEyPAsgADxbksi')
+   * // true
+   */
   isTestnetAddress(address) {
     if (address[0] === "x") return false
     else if (address[0] === "t") return true
 
     return this.detectAddressNetwork(address) === "testnet"
   }
-
+  /**
+   * @api Address.isRegTestAddress() Detect if regtest address.
+   * @apiName isRegTestAddress
+   * @apiGroup Address
+   * @apiDescription Detect if regtest address.
+   *
+   * @apiExample Example usage:
+   *   // regtest
+   * bitbox.Address.isRegTestAddress('bchreg:qzq9je6pntpva3wf6scr7mlnycr54sjgequ54zx9lh')
+   * // true
+   *
+   * // regtest w/ no prefix
+   * bitbox.Address.isRegTestAddress('qzq9je6pntpva3wf6scr7mlnycr54sjgequ54zx9lh')
+   * // true
+   *
+   * // cashaddr mainnet
+   * bitbox.Address.isRegTestAddress('bitcoincash:qqfx3wcg8ts09mt5l3zey06wenapyfqq2qrcyj5x0s')
+   * //false
+   *
+   * // w/ no cashaddr prefix
+   * bitbox.Address.isRegTestAddress('qqfx3wcg8ts09mt5l3zey06wenapyfqq2qrcyj5x0s')
+   * // false
+   *
+   * // legacy mainnet
+   * bitbox.Address.isRegTestAddress('14krEkSaKoTkbFT9iUCfUYARo4EXA8co6M')
+   * // false
+   *
+   * // cashaddr testnet
+   * bitbox.Address.isRegTestAddress('bchtest:qph2v4mkxjgdqgmlyjx6njmey0ftrxlnggt9t0a6zy')
+   * // false
+   *
+   * // testnet w/ no cashaddr prefix
+   * bitbox.Address.isRegTestAddress('qph2v4mkxjgdqgmlyjx6njmey0ftrxlnggt9t0a6zy')
+   * // false
+   */
   isRegTestAddress(address) {
     return this.detectAddressNetwork(address) === "regtest"
   }
+
+  /**
+   * @api Address.isP2PKHAddress() Detect if p2pkh address.
+   * @apiName isP2PKHAddress
+   * @apiGroup Address
+   * @apiDescription Detect if p2pkh address.
+   *
+   * @apiExample Example usage:
+   *   // cashaddr
+   *  bitbox.Address.isP2PKHAddress('bitcoincash:qqfx3wcg8ts09mt5l3zey06wenapyfqq2qrcyj5x0s')
+   *  // true
+   *
+   *  // w/ no cashaddr prefix
+   *  bitbox.Address.isP2PKHAddress('qqfx3wcg8ts09mt5l3zey06wenapyfqq2qrcyj5x0s')
+   *  // true
+   *
+   *  // legacy
+   *  bitbox.Address.isP2PKHAddress('14krEkSaKoTkbFT9iUCfUYARo4EXA8co6M')
+   *  // true
+   *
+   *  // legacy testnet
+   *  bitbox.Address.isP2PKHAddress('mqc1tmwY2368LLGktnePzEyPAsgADxbksi')
+   *  // true
+   *
+   *  // testnet w/ no cashaddr prefix
+   *  bitbox.Address.isP2PKHAddress('qph2v4mkxjgdqgmlyjx6njmey0ftrxlnggt9t0a6zy')
+   *  // true
+   *
+   *  // legacy testnet
+   *  bitbox.Address.isP2PKHAddress('mqc1tmwY2368LLGktnePzEyPAsgADxbksi')
+   *  // true
+   */
 
   // Test for address type.
   isP2PKHAddress(address) {
     return this.detectAddressType(address) === "p2pkh"
   }
+  /**
+   * @api Address.isP2SHAddress() Detect if p2sh address.
+   * @apiName isP2SHAddress
+   * @apiGroup Address
+   * @apiDescription Detect if p2sh address.
+   *
+   * @apiExample Example usage:
+   *   // cashaddr
+   *  bitbox.Address.isP2SHAddress('bitcoincash:qqfx3wcg8ts09mt5l3zey06wenapyfqq2qrcyj5x0s')
+   *  // false
+   *
+   *  // cashaddr w/ no prefix
+   *  bitbox.Address.isP2SHAddress('qqfx3wcg8ts09mt5l3zey06wenapyfqq2qrcyj5x0s')
+   *  // false
+   *
+   *  // legacy
+   *  bitbox.Address.isP2SHAddress('1NoYQso5UF6XqC4NbjKAp2EnjJ59yLNn74')
+   *  // false
+   *
+   *  // cashaddr testnet
+   *  bitbox.Address.isP2SHAddress('bchtest:qph2v4mkxjgdqgmlyjx6njmey0ftrxlnggt9t0a6zy')
+   *  // false
+   *
+   *  // cashaddr testnet w/ no prefix
+   *  bitbox.Address.isP2SHAddress('qph2v4mkxjgdqgmlyjx6njmey0ftrxlnggt9t0a6zy')
+   *  // false
+   *
+   *  // legacy testnet
+   *  bitbox.Address.isP2SHAddress('mqc1tmwY2368LLGktnePzEyPAsgADxbksi')
+   *  // false
+   */
 
   isP2SHAddress(address) {
     return this.detectAddressType(address) === "p2sh"
   }
-
+  /**
+   * @api Address.detectAddressFormat() Detect address format.
+   * @apiName detectAddressFormat
+   * @apiGroup Address
+   * @apiDescription Detect address format.
+   *
+   * @apiExample Example usage:
+   *   // cashaddr
+   *  bitbox.Address.detectAddressFormat('bitcoincash:qqfx3wcg8ts09mt5l3zey06wenapyfqq2qrcyj5x0s')
+   *  // cashaddr
+   *
+   *  // cashaddr w/ no prefix
+   *  bitbox.Address.detectAddressFormat('qqfx3wcg8ts09mt5l3zey06wenapyfqq2qrcyj5x0s')
+   *  // cashaddr
+   *
+   *  // legacy
+   *  bitbox.Address.detectAddressFormat('1NoYQso5UF6XqC4NbjKAp2EnjJ59yLNn74')
+   *  // legacy
+   *
+   *  // cashaddr testnet
+   *  bitbox.Address.detectAddressFormat('bchtest:qph2v4mkxjgdqgmlyjx6njmey0ftrxlnggt9t0a6zy')
+   *  // cashaddr
+   *
+   *  // cashaddr testnet w/ no prefix
+   *  bitbox.Address.detectAddressFormat('qph2v4mkxjgdqgmlyjx6njmey0ftrxlnggt9t0a6zy')
+   *  // cashaddr
+   *
+   *  // legacy testnet
+   *  bitbox.Address.detectAddressFormat('mqc1tmwY2368LLGktnePzEyPAsgADxbksi')
+   *  // legacy
+   */
   // Detect address format.
   detectAddressFormat(address) {
     const decoded = this._decode(address)
 
     return decoded.format
   }
-
+  /**
+   * @api Address.detectAddressNetwork() Detect address network.
+   * @apiName detectAddressNetwork
+   * @apiGroup Address
+   * @apiDescription Detect address network.
+   *
+   * @apiExample Example usage:
+   *   // cashaddr
+   *  bitbox.Address.detectAddressNetwork('bitcoincash:qqfx3wcg8ts09mt5l3zey06wenapyfqq2qrcyj5x0s')
+   *  // mainnet
+   *
+   *  // cashaddr w/ no prefix
+   *  bitbox.Address.detectAddressNetwork('qqfx3wcg8ts09mt5l3zey06wenapyfqq2qrcyj5x0s')
+   *  // mainnet
+   *
+   *  // legacy
+   *  bitbox.Address.detectAddressNetwork('1NoYQso5UF6XqC4NbjKAp2EnjJ59yLNn74')
+   *  // mainnet
+   *
+   *  // cashaddr testnet
+   *  bitbox.Address.detectAddressNetwork('bchtest:qph2v4mkxjgdqgmlyjx6njmey0ftrxlnggt9t0a6zy')
+   *  // testnet
+   *
+   *  // cashaddr testnet w/ no prefix
+   *  bitbox.Address.detectAddressNetwork('qph2v4mkxjgdqgmlyjx6njmey0ftrxlnggt9t0a6zy')
+   *  // testnet
+   *
+   *  // legacy testnet
+   *  bitbox.Address.detectAddressNetwork('mqc1tmwY2368LLGktnePzEyPAsgADxbksi')
+   *  // testnet
+   */
   // Detect address network.
   detectAddressNetwork(address) {
     if (address[0] === "x") return "mainnet"
@@ -282,14 +605,72 @@ class Address {
         throw new Error(`Invalid prefix : ${decoded.prefix}`)
     }
   }
-
+  /**
+   * @api Address.detectAddressType() Detect address type.
+   * @apiName detectAddressType
+   * @apiGroup Address
+   * @apiDescription Detect address type.
+   *
+   * @apiExample Example usage:
+   *   // cashaddr
+   *  bitbox.Address.detectAddressType('bitcoincash:qqfx3wcg8ts09mt5l3zey06wenapyfqq2qrcyj5x0s');
+   *  // p2pkh
+   *
+   *  // cashaddr w/ no prefix
+   *  bitbox.Address.detectAddressType('qqfx3wcg8ts09mt5l3zey06wenapyfqq2qrcyj5x0s');
+   *  // p2pkh
+   *
+   *  // legacy
+   *  bitbox.Address.detectAddressType('1NoYQso5UF6XqC4NbjKAp2EnjJ59yLNn74');
+   *  // p2pkh
+   *
+   *  // cashaddr testnet
+   *  bitbox.Address.detectAddressType('bchtest:qph2v4mkxjgdqgmlyjx6njmey0ftrxlnggt9t0a6zy');
+   *  // p2pkh
+   *
+   *  // cashaddr testnet w/ no prefix
+   *  bitbox.Address.detectAddressType('qph2v4mkxjgdqgmlyjx6njmey0ftrxlnggt9t0a6zy');
+   *  // p2pkh
+   *
+   *  // legacy testnet
+   *  bitbox.Address.detectAddressType('mqc1tmwY2368LLGktnePzEyPAsgADxbksi');
+   *  // p2pkh
+   */
   // Detect address type.
   detectAddressType(address) {
     const decoded = this._decode(address)
 
     return decoded.type.toLowerCase()
   }
-
+  /**
+   * @api Address.fromXPub() Generates an address (xpub).
+   * @apiName fromXPub
+   * @apiGroup Address
+   * @apiDescription Generates an address for an extended public key (xpub).
+   *
+   * @apiExample Example usage:
+   *   // generate 5 mainnet external change addresses for xpub6DTNmB7gWa8RtQAfmy8wSDikM5mky4fhsnqQd9AqoCaLcekqNgRZW5JCSXwXkLDkABHTD1qx7kqrbGzT6xBGfAvCJSj2rwvKWP8eZBR2EVA
+   *  let xpub = 'xpub6DTNmB7gWa8RtQAfmy8wSDikM5mky4fhsnqQd9AqoCaLcekqNgRZW5JCSXwXkLDkABHTD1qx7kqrbGzT6xBGfAvCJSj2rwvKWP8eZBR2EVA';
+   *  for(let i = 0; i <= 4; i++) {
+   *    console.log(bitbox.Address.fromXPub(xpub, "0/" + i))
+   *  }
+   *  // bitcoincash:qptnmya5wkly7xf97wm5ak23yqdsz3l2cyj7k9vyyh
+   *  // bitcoincash:qrr2suh9yjsrkl2qp3p967uhfg6u0r6xxsn9h5vuvr
+   *  // bitcoincash:qpkfg4kck99wksyss6nvaqtafeahfnyrpsj0ed372t
+   *  // bitcoincash:qppgmuuwy07g0x39sx2z0x2u8e34tvfdxvy0c2jvx7
+   *  // bitcoincash:qryj8x4s7vfsc864jm0xaak9qfe8qgk245y9ska57l
+   *
+   *  // generate 5 testnet external change addresses for tpubDCrnMSKwDMAbxg82yqDt97peMvftCXk3EfBb9WgZh27mPbHGkysU3TW7qX5AwydmnVQfaGeNhUR6okQ3dS5AJTP9gEP7jk2Wcj6Xntc6gNh
+   *  let xpub = 'tpubDCrnMSKwDMAbxg82yqDt97peMvftCXk3EfBb9WgZh27mPbHGkysU3TW7qX5AwydmnVQfaGeNhUR6okQ3dS5AJTP9gEP7jk2Wcj6Xntc6gNh';
+   *  for(let i = 0; i <= 4; i++) {
+   *    console.log(bitbox.Address.fromXPub(xpub, "0/" + i))
+   *  }
+   *  // bchtest:qrth8470sc9scek9u0jj2d0349t62gxzdstw2jukl8
+   *  // bchtest:qpm56zc5re0nhms96r7p985aajthp0vxvg6e4ux3kc
+   *  // bchtest:qqtu3tf6yyd73ejhk3a2ylqynpl3mzzhwuzt299jfd
+   *  // bchtest:qzd7dvlnfukggjqsf5ju0qqwwltakfumjsck33js6m
+   *  // bchtest:qq322ataqeas4n0pdn4gz2sdereh5ae43ylk4qdvus
+   */
   fromXPub(xpub, path = "0/0") {
     const HDNode = Bitcoin.HDNode.fromBase58(
       xpub,
@@ -298,7 +679,30 @@ class Address {
     const address = HDNode.derivePath(path)
     return this.toCashAddress(address.getAddress())
   }
-
+  /**
+   * @api Address.fromOutputScript() Detect an addess from an OutputScript..
+   * @apiName fromOutputScript
+   * @apiGroup Address
+   * @apiDescription Detect an addess from an OutputScript..
+   *
+   * @apiExample Example usage:
+   *  const script = bitbox.Script.encode([
+   *    Buffer.from("BOX", "ascii"),
+   *    bitbox.Script.opcodes.OP_CAT,
+   *    Buffer.from("BITBOX", "ascii"),
+   *    bitbox.Script.opcodes.OP_EQUAL
+   *  ]);
+   *  const p2sh_hash160 = bitbox.Crypto.hash160(script);
+   *  const scriptPubKey = bitbox.Script.scriptHash.output.encode(p2sh_hash160);
+   *
+   *  // mainnet address from output script
+   *  bitbox.Address.fromOutputScript(scriptPubKey);
+   *  // bitcoincash:pz0qcslrqn7hr44hsszwl4lw5r6udkg6zqncnufkrl
+   *
+   *  // testnet address from output script
+   *  bitbox.Address.fromOutputScript(scriptPubKey, 'testnet');
+   *  // bchtest:pz0qcslrqn7hr44hsszwl4lw5r6udkg6zqh2hmtpyr
+   */
   fromOutputScript(scriptPubKey, network = "mainnet") {
     let netParam
     if (network !== "bitcoincash" && network !== "mainnet")
