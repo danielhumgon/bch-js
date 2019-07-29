@@ -7,7 +7,30 @@ class Address {
   constructor(restURL) {
     this.restURL = restURL
   }
-
+  /**
+   * @api Address.toLegacyAddress() Details about an address.
+   * @apiName Details
+   * @apiGroup Address
+   * @apiDescription Return details about an address including balance.
+   *
+   * @apiExample Example usage:
+   * // mainnet w/ prefix
+   * bchjs.Address.toLegacyAddress('bitcoincash:qzm47qz5ue99y9yl4aca7jnz7dwgdenl85jkfx3znl')
+   * // 1HiaTupadqQN66Tvgt7QSE5Wg13BUy25eN
+   *
+   * // mainnet w/ no prefix
+   * bchjs.Address.toLegacyAddress('qzm47qz5ue99y9yl4aca7jnz7dwgdenl85jkfx3znl')
+   * // 1HiaTupadqQN66Tvgt7QSE5Wg13BUy25eN
+   *
+   * // testnet w/ prefix
+   * bchjs.Address.toLegacyAddress('bchtest:qph2v4mkxjgdqgmlyjx6njmey0ftrxlnggt9t0a6zy')
+   * // mqc1tmwY2368LLGktnePzEyPAsgADxbksi
+   *
+   * // testnet w/ no prefix
+   * bchjs.Address.toLegacyAddress('qph2v4mkxjgdqgmlyjx6njmey0ftrxlnggt9t0a6zy')
+   * // mqc1tmwY2368LLGktnePzEyPAsgADxbksi
+   */
+  // Translate address from any address format into a specific format.
   async details(address) {
     try {
       // Handle single address.
