@@ -1,5 +1,22 @@
 const axios = require("axios")
-
+/**
+ * @api price.current() Get current price.
+ * @apiName Price.
+ * @apiGroup Price
+ * @apiDescription Return current price of BCH in multiple currencies.
+ *
+ * @apiExample Example usage:
+ *(async () => {
+ *  try {
+ *    let current = await bchjs.Price.current('usd');
+ *    console.log(current);
+ *  } catch(error) {
+ *   console.error(error)
+ *  }
+ *})()
+ *
+ * // 26681
+ */
 class Price {
   async current(currency = "usd") {
     try {
