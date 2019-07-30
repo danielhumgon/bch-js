@@ -332,16 +332,6 @@ class Blockchain {
     }
   }
 
-  /**
-   * @api Blockchain.getBestBlockHash() Create BIP32 account.
-   * @apiName getBestBlockHash
-   * @apiGroup Blockchain
-   * @apiDescription
-   * Returns the hash of the best (tip) block in the longest blockchain.
-   *
-   * @apiExample Example usage:
-
-   */
   async getMempoolAncestors(txid, verbose = false) {
     if (typeof txid !== "string") txid = JSON.stringify(txid)
 
@@ -356,16 +346,6 @@ class Blockchain {
     }
   }
 
-  /**
-   * @api Blockchain.getBestBlockHash() Create BIP32 account.
-   * @apiName getBestBlockHash
-   * @apiGroup Blockchain
-   * @apiDescription
-   * Returns the hash of the best (tip) block in the longest blockchain.
-   *
-   * @apiExample Example usage:
-
-   */
   async getMempoolDescendants(txid, verbose = false) {
     if (typeof txid !== "string") txid = JSON.stringify(txid)
 
