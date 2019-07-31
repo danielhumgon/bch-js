@@ -13,7 +13,7 @@ class Block {
    * @apiExample Example usage:
    * (async () => {
   try {
-    let details = await bchjs.Block.detailsByHeight(500000);
+    let details = await bchjs.Insight.Block.detailsByHeight(500000);
     console.log(details);
   } catch(error) {
    console.error(error)
@@ -48,7 +48,7 @@ class Block {
 
 (async () => {
   try {
-    let details = await bchjs.Block.detailsByHeight([500000, 500001]);
+    let details = await bchjs.Insight.Block.detailsByHeight([500000, 500001]);
     console.log(details);
   } catch(error) {
    console.error(error)
@@ -140,7 +140,7 @@ class Block {
    * @apiExample Example usage:
    * (async () => {
   try {
-    let details = await bchjs.Block.hash("000000000000000005e14d3f9fdfb70745308706615cfa9edca4f4558332b201");
+    let details = await bchjs.Insight.Block.detailsByHash("000000000000000005e14d3f9fdfb70745308706615cfa9edca4f4558332b201");
     console.log(details);
   } catch(error) {
    console.error(error)
@@ -174,7 +174,7 @@ class Block {
 
 (async () => {
   try {
-    let details = await bchjs.Block.detailsByHeight([
+    let details = await bchjs.Insight.Block.detailsByHeight([
       "000000000000000005e14d3f9fdfb70745308706615cfa9edca4f4558332b201",
       "000000000000000005e14d3f9fdfb70745308706615cfa9edca4f4558332b201"
     ]);

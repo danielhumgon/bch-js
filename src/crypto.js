@@ -11,17 +11,17 @@ class Crypto {
    * @apiExample Example usage:
    *   // buffer from hex
    *  let buffer = Buffer.from('0101010101010101', 'hex')
-   *  bchjs.Crypto.sha1(buffer)
+   *  bchjs.Crypto.sha256(buffer)
    *  // <Buffer c0 35 7a 32 ed 1f 6a 03 be 92 dd 09 44 76 f7 f1 a2 e2 14 ec>
    *
    *  // buffer from hex
    *  let buffer = Buffer.from('031ad329b3117e1d1e2974406868e575d48cff88e8128ba0eedb10da053785033b', 'hex')
-   *  bchjs.Crypto.sha1(buffer)
+   *  bchjs.Crypto.sha256(buffer)
    *  // <Buffer 98 ee ed 79 8e e9 58 d1 65 3e df 2d 85 7d 4a ea ba 97 19 32>
    *
    *  // buffer from hex
    *  let buffer = Buffer.from('03123464075c7a5fa6b8680afa2c962a02e7bf071c6b2395b0ac711d462cac9354', 'hex')
-   *  bchjs.Crypto.sha1(buffer)
+   *  bchjs.Crypto.sha256(buffer)
    *  // <Buffer 26 b0 78 0a 68 3a 1e 09 8e 9c b8 cf a1 b0 92 42 28 25 00 97>
    *
    * */
