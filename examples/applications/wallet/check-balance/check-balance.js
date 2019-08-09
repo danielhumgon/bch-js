@@ -4,17 +4,15 @@
 */
 
 // Set NETWORK to either testnet or mainnet
-const NETWORK = `testnet`
+const NETWORK = `mainnet`
 
-// Instantiate BITBOX.
-const bitboxLib = "../../../../lib/BITBOX"
-const BITBOXSDK = require(bitboxLib)
+const BCHJS = require("../../../../src/bch-js")
 
 // Instantiate SLP based on the network.
-let BITBOX
+let bchjs
 if (NETWORK === `mainnet`)
-  BITBOX = new BITBOXSDK({ restURL: `https://rest.bitcoin.com/v2/` })
-else BITBOX = new BITBOXSDK({ restURL: `https://trest.bitcoin.com/v2/` })
+  bchjs = new BCHJS({ restURL: `http://decatur.hopto.org:12400/v3/` })
+else bchjs = new BCHJS({ restURL: `http://decatur.hopto.org:13400/v3/` })
 
 // Open the wallet generated with create-wallet.
 try {
@@ -30,7 +28,7 @@ try {
 async function getBalance() {
   try {
     // first get BCH balance
-    const balance = await BITBOX.Address.details(walletInfo.cashAddress)
+    const balance = await bchjs.Insight.Address.details(walletInfo.cashAddress)
 
     console.log(`BCH Balance information:`)
     console.log(balance)

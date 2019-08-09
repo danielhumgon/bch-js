@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/christroutner/bchjs-get-started.git"
+    "url": "git+https://github.com/Bitcoin-com/bitbox-javascript-sdk.git"
   },
   "keywords": [
     "bitbox",
@@ -23,10 +23,7 @@
   "author": "Chris Troutner <chris.troutner@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/christroutner/bchjs-get-started/issues"
+    "url": "https://github.com/Bitcoin-com/bitbox-javascript-sdk/issues"
   },
-  "homepage": "https://github.com/christroutner/bchjs-get-started#readme",
-  "dependencies": {
-    "@chris.troutner/bch-js": "^1.4.1"
-  }
+  "homepage": "https://github.com/Bitcoin-com/bitbox-javascript-sdk/blob/master/README.md"
 }

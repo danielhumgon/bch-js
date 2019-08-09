@@ -4,17 +4,15 @@
 */
 
 // Set NETWORK to either testnet or mainnet
-const NETWORK = `testnet`
+const NETWORK = `mainnet`
 
-// Instantiate BITBOX.
-const bitboxLib = "../../../../lib/BITBOX"
-const BITBOXSDK = require(bitboxLib)
+const BCHJS = require("../../../../src/bch-js")
 
 // Instantiate SLP based on the network.
-let BITBOX
+let bchjs
 if (NETWORK === `mainnet`)
-  BITBOX = new BITBOXSDK({ restURL: `https://rest.bitcoin.com/v2/` })
-else BITBOX = new BITBOXSDK({ restURL: `https://trest.bitcoin.com/v2/` })
+  bchjs = new BCHJS({ restURL: `http://decatur.hopto.org:12400/v3/` })
+else bchjs = new BCHJS({ restURL: `http://decatur.hopto.org:13400/v3/` })
 
 const fs = require("fs")
 
@@ -25,10 +23,7 @@ let outStr = ""
 const outObj = {}
 
 // create 256 bit BIP39 mnemonic
-const mnemonic = BITBOX.Mnemonic.generate(
-  128,
-  BITBOX.Mnemonic.wordLists()[lang]
-)
+const mnemonic = bchjs.Mnemonic.generate(128, bchjs.Mnemonic.wordLists()[lang])
 console.log("BIP44 $BCH Wallet")
 outStr += "BIP44 $BCH Wallet\n"
 console.log(`128 bit ${lang} BIP39 Mnemonic: `, mnemonic)
@@ -36,12 +31,12 @@ outStr += `\n128 bit ${lang} BIP32 Mnemonic:\n${mnemonic}\n\n`
 outObj.mnemonic = mnemonic
 
 // root seed buffer
-const rootSeed = BITBOX.Mnemonic.toSeed(mnemonic)
+const rootSeed = bchjs.Mnemonic.toEntropy(mnemonic) // maybe replace bchjs.Mnemonic.toEntropy() for bchjs.Mnemonic.toSeed()
 
 // master HDNode
 let masterHDNode
-if (NETWORK === `mainnet`) masterHDNode = BITBOX.HDNode.fromSeed(rootSeed)
-else masterHDNode = BITBOX.HDNode.fromSeed(rootSeed, "testnet") // Testnet
+if (NETWORK === `mainnet`) masterHDNode = bchjs.HDNode.fromSeed(rootSeed)
+else masterHDNode = bchjs.HDNode.bchjs(rootSeed, "testnet") // Testnet
 
 // HDNode of BIP44 account
 console.log(`BIP44 Account: "m/44'/145'/0'"`)
@@ -50,14 +45,14 @@ outStr += `BIP44 Account: "m/44'/145'/0'"\n`
 // Generate the first 10 seed addresses.
 for (let i = 0; i < 10; i++) {
   const childNode = masterHDNode.derivePath(`m/44'/145'/0'/0/${i}`)
-  console.log(`m/44'/145'/0'/0/${i}: ${BITBOX.HDNode.toCashAddress(childNode)}`)
-  outStr += `m/44'/145'/0'/0/${i}: ${BITBOX.HDNode.toCashAddress(childNode)}\n`
+  console.log(`m/44'/145'/0'/0/${i}: ${bchjs.HDNode.toCashAddress(childNode)}`)
+  outStr += `m/44'/145'/0'/0/${i}: ${bchjs.HDNode.toCashAddress(childNode)}\n`
 
   // Save the first seed address for use in the .json output file.
   if (i === 0) {
-    outObj.cashAddress = BITBOX.HDNode.toCashAddress(childNode)
-    outObj.legacyAddress = BITBOX.HDNode.toLegacyAddress(childNode)
-    outObj.WIF = BITBOX.HDNode.toWIF(childNode)
+    outObj.cashAddress = bchjs.HDNode.toCashAddress(childNode)
+    outObj.legacyAddress = bchjs.HDNode.toLegacyAddress(childNode)
+    outObj.WIF = bchjs.HDNode.toWIF(childNode)
   }
 }
 

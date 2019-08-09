@@ -4,17 +4,16 @@
 */
 
 // Set NETWORK to either testnet or mainnet
-const NETWORK = `testnet`
+const NETWORK = `mainnet`
 
-// Instantiate BITBOX.
-const bitboxLib = "../../../lib/BITBOX"
-const BITBOXSDK = require(bitboxLib)
+const BCHJS = require("../../../src/bch-js")
+//const bchjs = new BCHJS({ restURL: `http://decatur.hopto.org:12400/v3/` });
 
 // Instantiate SLP based on the network.
-let BITBOX
+let bchjs
 if (NETWORK === `mainnet`)
-  BITBOX = new BITBOXSDK({ restURL: `https://rest.bitcoin.com/v2/` })
-else BITBOX = new BITBOXSDK({ restURL: `https://trest.bitcoin.com/v2/` })
+  bchjs = new BCHJS({ restURL: `http://decatur.hopto.org:12400/v3/` })
+else bchjs = new BCHJS({ restURL: `http://decatur.hopto.org:13400/v3/` })
 
 // Open the wallet generated with create-wallet.
 try {
@@ -31,10 +30,10 @@ const ADDR = walletInfo.cashAddress
 async function getUtxos() {
   try {
     // first get BCH balance
-    const utxos = await BITBOX.Address.utxo(ADDR)
+    const utxos = await bchjs.Insight.Address.utxo(ADDR)
 
     console.log(`UTXO information for address ${ADDR}:`)
-    console.log(utxos)
+    console.log(`result: ${JSON.stringify(utxos, null, 2)}`)
   } catch (err) {
     console.error(`Error in getUtxos: `, err)
     throw err

@@ -3,15 +3,11 @@
   with the create-wallet example.
 */
 
-// Instantiate BITBOX.
-//const bitboxLib = "../../../lib/BITBOX"
-//const BITBOXSDK = require(bitboxLib)
-//const BITBOX = new BITBOXSDK({ restURL: "https://trest.bitcoin.com/v2/" })
-const BCHJS = require("@chris.troutner/bch-js")
+const BCHJS = require("../../../src/bch-js")
 const bchjs = new BCHJS({ restURL: `http://decatur.hopto.org:12400/v3/` })
 
-//const ADDR = `bchtest:qr45kxqda7yw8atztvkc4ckqnrlhmp0kvsep4p345q`
-const ADDR = "1BFHGm4HzqgXXyNX8n7DsQno5DAC4iLMRA"
+const ADDR = "1KmP3LJXNhApDWtNKsdRc6gQM1c5TKrZMu"
+
 async function addressDetails() {
   try {
     // first get BCH balance
