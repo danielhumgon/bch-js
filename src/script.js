@@ -35,7 +35,7 @@ class Script {
   }
 
   /**
-   * @api Script.classifyInput() Classify transaction input.
+   * @api Script.classifyInput() classifyInput() - Classify transaction input.
    * @apiName classifyInput
    * @apiGroup Script
    * @apiDescription
@@ -63,7 +63,7 @@ class Script {
   }
 
   /**
-   * @api Script.classifyOutput() Classify transaction output.
+   * @api Script.classifyOutput() classifyOutput() - Classify transaction output.
    * @apiName classifyOutput
    * @apiGroup Script
    * @apiDescription
@@ -95,7 +95,7 @@ class Script {
   }
 
   /**
-   * @api Script.decode() Decode a Script buffer.
+   * @api Script.decode() decode() - Decode a Script buffer.
    * @apiName decode
    * @apiGroup Script
    * @apiDescription
@@ -121,7 +121,7 @@ class Script {
   }
 
   /**
-   * @api Script.encode() Encode a Script buffer.
+   * @api Script.encode() encode() - Encode a Script buffer.
    * @apiName encode
    * @apiGroup Script
    * @apiDescription
@@ -156,7 +156,7 @@ class Script {
   }
 
   /**
-   * @api Script.toASM() Script buffer to ASM.
+   * @api Script.toASM() toASM() - Script buffer to ASM.
    * @apiName toASM
    * @apiGroup Script
    * @apiDescription
@@ -178,7 +178,7 @@ class Script {
   }
 
   /**
-   * @api Script.fromASM() Script ASM to buffer.
+   * @api Script.fromASM() fromASM() - Script ASM to buffer.
    * @apiName fromASM
    * @apiGroup Script
    * @apiDescription

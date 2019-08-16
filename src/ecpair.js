@@ -6,7 +6,7 @@ class ECPair {
     ECPair._address = address
   }
   /**
-   * @api Ecpair.fromWIF() Generates an ECPair from a private key in wallet import format (WIF).
+   * @api Ecpair.fromWIF() fromWIF() - Generates an ECPair from a private key in wallet import format (WIF).
    * @apiName fromWIF
    * @apiGroup ECPair
    * @apiDescription Generates an ECPair from a private key in wallet import format (WIF). Follow these steps to go from a private key to a WIF. This method only works with a compressed private key.
@@ -35,7 +35,7 @@ class ECPair {
     return Bitcoin.ECPair.fromWIF(privateKeyWIF, bitcoincashBitcoinJSLib)
   }
   /**
-   * @api Ecpair.toWIF() Gets a private key in wallet import format from an ECPair.
+   * @api Ecpair.toWIF() toWIF() - Gets a private key in wallet import format from an ECPair.
    * @apiName toWIF
    * @apiGroup ECPair
    * @apiDescription Gets a private key in wallet import format from an ECPair.
@@ -69,7 +69,7 @@ class ECPair {
     return ecpair.verify(buffer, signature)
   }
   /**
-   * @api Ecpair.fromPublicKey() Generates an ECPair from a public key buffer.
+   * @api Ecpair.fromPublicKey() fromPublicKey() - Generates an ECPair from a public key buffer.
    * @apiName fromPublicKey
    * @apiGroup ECPair
    * @apiDescription Generates an ECPair from a public key buffer.
@@ -87,7 +87,7 @@ class ECPair {
     return Bitcoin.ECPair.fromPublicKeyBuffer(pubkeyBuffer)
   }
   /**
-   * @api Ecpair.toPublicKey() Get the public key of an ECPair as a buffer.
+   * @api Ecpair.toPublicKey() toPublicKey() - Get the public key of an ECPair as a buffer.
    * @apiName toPublicKey
    * @apiGroup ECPair
    * @apiDescription Get the public key of an ECPair as a buffer.
@@ -109,7 +109,7 @@ class ECPair {
     return ecpair.getPublicKeyBuffer()
   }
   /**
-   * @api Ecpair.toLegacyAddress() Get legacy address of ECPair.
+   * @api Ecpair.toLegacyAddress() toLegacyAddress() - Get legacy address of ECPair.
    * @apiName toLegacyAddress
    * @apiGroup ECPair
    * @apiDescription Get legacy address of ECPair.
@@ -135,7 +135,7 @@ class ECPair {
     return ecpair.getAddress()
   }
   /**
-   * @api Ecpair.toCashAddress() Get cash address of ECPair.
+   * @api Ecpair.toCashAddress() toCashAddress() - Get cash address of ECPair.
    * @apiName toCashAddress
    * @apiGroup ECPair
    * @apiDescription Get cash address of ECPair.

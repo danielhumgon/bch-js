@@ -6,7 +6,7 @@ class Schnorr {
   }
 
   /**
-   * @api Schnorr.sign() Sign a 32-byte message with the private key, returning a 64-byte signature.
+   * @api Schnorr.sign() sign() - Sign a 32-byte message with the private key, returning a 64-byte signature.
    * @apiName sign
    * @apiGroup Schnorr
    * @apiDescription
@@ -33,7 +33,7 @@ class Schnorr {
   }
 
   /**
-   * @api Schnorr.verify() Verify a 64-byte signature of a 32-byte message against the public key.
+   * @api Schnorr.verify() verify() - Verify a 64-byte signature of a 32-byte message against the public key.
    * @apiName verify
    * @apiGroup Schnorr
    * @apiDescription
@@ -65,7 +65,7 @@ class Schnorr {
   }
 
   /**
-   * @api Schnorr.batchVerify() Verify a list of 64-byte signatures as a batch operation.
+   * @api Schnorr.batchVerify() batchVerify() - Verify a list of 64-byte signatures as a batch operation.
    * @apiName batchVerify
    * @apiGroup Schnorr
    * @apiDescription
@@ -127,7 +127,7 @@ class Schnorr {
   }
 
   /**
-   * @api Schnorr.nonInteractive() Aggregates multiple signatures of different private keys
+   * @api Schnorr.nonInteractive() nonInteractive() - Aggregates multiple signatures of different private keys
    * @apiName nonInteractive
    * @apiGroup Schnorr
    * @apiDescription
@@ -176,7 +176,7 @@ class Schnorr {
   }
 
   /**
-   * @api Schnorr.computeEll() Generate ell which is the hash over all public keys participating in a session.
+   * @api Schnorr.computeEll() computeEll() - Generate ell which is the hash over all public keys participating in a session.
    * @apiName computeEll
    * @apiGroup Schnorr
    * @apiDescription
@@ -250,7 +250,7 @@ class Schnorr {
   }
 
   /**
-   * @api Schnorr.publicKeyCombine() Creates a special rogue-key-resistant.
+   * @api Schnorr.publicKeyCombine() publicKeyCombine() - Creates a special rogue-key-resistant.
    * @apiName publicKeyCombine
    * @apiGroup Schnorr
    * @apiDescription
@@ -268,7 +268,7 @@ class Schnorr {
   }
 
   /**
-   * @api Schnorr.sessionInitialize() Creates a signing session.
+   * @api Schnorr.sessionInitialize() sessionInitialize() - Creates a signing session.
    * @apiName sessionInitialize
    * @apiGroup Schnorr
    * @apiDescription
@@ -307,7 +307,7 @@ class Schnorr {
   }
 
   /**
-   * @api Schnorr.sessionNonceCombine() Combines multiple nonces R_i into the combined nonce R.
+   * @api Schnorr.sessionNonceCombine() sessionNonceCombine() - Combines multiple nonces R_i into the combined nonce R.
    * @apiName sessionNonceCombine
    * @apiGroup Schnorr
    * @apiDescription
@@ -352,7 +352,7 @@ class Schnorr {
   }
 
   /**
-   * @api Schnorr.partialSign() Creates a partial signature s_i for a participant.
+   * @api Schnorr.partialSign() partialSign() - Creates a partial signature s_i for a participant.
    * @apiName partialSign
    * @apiGroup Schnorr
    * @apiDescription
@@ -384,7 +384,7 @@ class Schnorr {
   }
 
   /**
-   * @api Schnorr.partialSignatureVerify() Verifies a partial signature s_i against the participant's public key P_i.
+   * @api Schnorr.partialSignatureVerify() partialSignatureVerify() - Verifies a partial signature s_i against the participant's public key P_i.
    * @apiName partialSignatureVerify
    * @apiGroup Schnorr
    * @apiDescription
@@ -437,7 +437,7 @@ class Schnorr {
   }
 
   /**
-   * @api Schnorr.partialSignaturesCombine() Combines multiple partial signatures into a Schnorr signature.
+   * @api Schnorr.partialSignaturesCombine() partialSignaturesCombine() - Combines multiple partial signatures into a Schnorr signature.
    * @apiName partialSignaturesCombine
    * @apiGroup Schnorr
    * @apiDescription

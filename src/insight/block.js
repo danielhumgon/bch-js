@@ -5,9 +5,9 @@ class Block {
   }
 
   /**
-   * @api Block.detailsByHeight() Get Details by Height.
+   * @api Insight.Block.detailsByHeight() detailsByHeight() - Get Details by Height.
    * @apiName detailsByHeight
-   * @apiGroup Block
+   * @apiGroup Insight
    * @apiDescription Return details about a Block. Lookup the block with a block height.
    *
    * @apiExample Example usage:
@@ -132,9 +132,9 @@ class Block {
   }
 
   /**
-   * @api Block.detailsByHash() Get Details by Hash.
+   * @api Insight.Block.detailsByHash() detailsByHash() - Get Details by Hash.
    * @apiName detailsByHash
-   * @apiGroup Block
+   * @apiGroup Insight
    * @apiDescription Return details about a Block. Lookup the block with a block hash.
    *
    * @apiExample Example usage:

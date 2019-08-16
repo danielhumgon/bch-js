@@ -12,7 +12,7 @@ class HDNode extends BCHJSHDNode {
   }
 
   /**
-   * @api SLP.HDNode.toLegacyAddress() Get legacy address of HDNode.
+   * @api SLP.HDNode.toLegacyAddress() toLegacyAddress() - Get legacy address of HDNode.
    * @apiName toLegacyAddress
    * @apiGroup SLP
    * @apiDescription Get legacy address of HDNode.
@@ -45,7 +45,7 @@ class HDNode extends BCHJSHDNode {
   }
 
   /**
-   * @api SLP.HDNode.toCashAddress() Get cash address of HDNode.
+   * @api SLP.HDNode.toCashAddress() toCashAddress() - Get cash address of HDNode.
    * @apiName toCashAddress
    * @apiGroup SLP
    * @apiDescription Get cash address of HDNode.
@@ -78,7 +78,7 @@ class HDNode extends BCHJSHDNode {
   }
 
   /**
-   * @api SLP.HDNode.toSLPAddress() Get slp address of HDNode.
+   * @api SLP.HDNode.toSLPAddress() toSLPAddress() - Get slp address of HDNode.
    * @apiName toSLPAddress
    * @apiGroup SLP
    * @apiDescription Get slp address of HDNode.

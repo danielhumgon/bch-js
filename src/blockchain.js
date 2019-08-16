@@ -11,7 +11,7 @@ class Blockchain {
   }
 
   /**
-   * @api Blockchain.getBestBlockHash() Returns the hash of the best (tip) block in the longest blockchain.
+   * @api Blockchain.getBestBlockHash() getBestBlockHash() - Returns the hash of the best (tip) block in the longest blockchain.
    * @apiName getBestBlockHash
    * @apiGroup Blockchain
    * @apiDescription
@@ -41,7 +41,7 @@ class Blockchain {
   }
 
   /**
-   * @api Blockchain.getBlock() Return information about block hash.
+   * @api Blockchain.getBlock() getBlock() - Return information about block hash.
    * @apiName getBlock
    * @apiGroup Blockchain
    * @apiDescription
@@ -88,7 +88,7 @@ class Blockchain {
   }
 
   /**
-   * @api Blockchain.getBlockchainInfo() Returns an object containing various state info regarding blockchain processing.
+   * @api Blockchain.getBlockchainInfo() getBlockchainInfo() - Returns an object containing various state info regarding blockchain processing.
    * @apiName getBlockchainInfo
    * @apiGroup Blockchain
    * @apiDescription
@@ -137,7 +137,7 @@ class Blockchain {
   }
 
   /**
-   * @api Blockchain.getBlockCount() Returns the number of blocks in the longest blockchain.
+   * @api Blockchain.getBlockCount() getBlockCount() - Returns the number of blocks in the longest blockchain.
    * @apiName getBlockCount
    * @apiGroup Blockchain
    * @apiDescription
@@ -167,7 +167,7 @@ class Blockchain {
   }
 
   /**
-   * @api Blockchain.getBlockHash() Returns hash of block in best-block-chain at height provided.
+   * @api Blockchain.getBlockHash() getBlockHash() - Returns hash of block in best-block-chain at height provided.
    * @apiName getBlockHash
    * @apiGroup Blockchain
    * @apiDescription
@@ -199,7 +199,7 @@ class Blockchain {
   }
 
   /**
-   * @api Blockchain.getBlockHeader() Return information about blockheader hash.
+   * @api Blockchain.getBlockHeader() getBlockHeader() - Return information about blockheader hash.
    * @apiName getBlockHeader
    * @apiGroup Blockchain
    * @apiDescription
@@ -262,7 +262,7 @@ class Blockchain {
   }
 
   /**
-   * @api Blockchain.getChainTips() Return information about all known tips in the block tree.
+   * @api Blockchain.getChainTips() getChainTips() - Return information about all known tips in the block tree.
    * @apiName getChainTips
    * @apiGroup Blockchain
    * @apiDescription
@@ -302,7 +302,7 @@ class Blockchain {
   }
 
   /**
-   * @api Blockchain.getDifficulty() Returns the proof-of-work difficulty as a multiple of the minimum difficulty.
+   * @api Blockchain.getDifficulty() getDifficulty() - Returns the proof-of-work difficulty as a multiple of the minimum difficulty.
    * @apiName getDifficulty
    * @apiGroup Blockchain
    * @apiDescription
@@ -361,7 +361,7 @@ class Blockchain {
   }
 
   /**
-   * @api Blockchain.getMempoolEntry() Returns mempool data for given transaction.
+   * @api Blockchain.getMempoolEntry() getMempoolEntry() - Returns mempool data for given transaction.
    * @apiName getMempoolEntry
    * @apiGroup Blockchain
    * @apiDescription
@@ -471,7 +471,7 @@ class Blockchain {
   }
 
   /**
-   * @api Blockchain.getMempoolInfo() Returns details on the active state of the TX memory pool.
+   * @api Blockchain.getMempoolInfo() getMempoolInfo() - Returns details on the active state of the TX memory pool.
    * @apiName getMempoolInfo
    * @apiGroup Blockchain
    * @apiDescription
@@ -506,7 +506,7 @@ class Blockchain {
   }
 
   /**
-   * @api Blockchain.getRawMempool() Returns all transaction ids in memory pool as a json array of string transaction ids.
+   * @api Blockchain.getRawMempool() getRawMempool() - Returns all transaction ids in memory pool as a json array of string transaction ids.
    * @apiName getRawMempool
    * @apiGroup Blockchain
    * @apiDescription
@@ -552,7 +552,7 @@ class Blockchain {
   }
 
   /**
-   * @api Blockchain.getTxOut() Returns details about an unspent transaction output.
+   * @api Blockchain.getTxOut() getTxOut() - Returns details about an unspent transaction output.
    * @apiName getTxOut
    * @apiGroup Blockchain
    * @apiDescription
@@ -583,7 +583,7 @@ class Blockchain {
   }
 
   /**
-   * @api Blockchain.getTxOutProof() Returns a hex-encoded proof that "txid" was included in a block.
+   * @api Blockchain.getTxOutProof() getTxOutProof() - Returns a hex-encoded proof that "txid" was included in a block.
    * @apiName getTxOutProof
    * @apiGroup Blockchain
    * @apiDescription
@@ -685,7 +685,7 @@ class Blockchain {
   }
 
   /**
-   * @api Blockchain.verifyTxOutProof() Verifies that a proof points to a transaction in a block.
+   * @api Blockchain.verifyTxOutProof() verifyTxOutProof() - Verifies that a proof points to a transaction in a block.
    * @apiName verifyTxOutProof
    * @apiGroup Blockchain
    * @apiDescription

@@ -9,7 +9,7 @@ class Utils {
   }
 
   /**
-   * @api SLP.Utils.list() List all tokens or list single token by id.
+   * @api SLP.Utils.list() list() - List all tokens or list single token by id.
    * @apiName list
    * @apiGroup SLP
    * @apiDescription List all tokens or list single token by id.
@@ -197,10 +197,10 @@ class Utils {
   }
 
   /**
-   * @api SLP.Utils.balancesForAddress() Return all balances for an address.
+   * @api SLP.Utils.balancesForAddress() balancesForAddress() - Return all balances for an address.
    * @apiName balancesForAddress
    * @apiGroup SLP
-   * @apiDescription Return all balances for an address.
+   * @apiDescription Return all balances for an address or array of addresses.
    *
    * @apiExample Example usage:
    *
@@ -266,14 +266,33 @@ class Utils {
    * // '467969e067f5612863d0bf2daaa70dede2c6be03abb6fd401c5ef6e1e1f1f5c5',
    * // balance: '507',
    * // decimalCount: 2 } ]
+   *
+   * Note: Balances for multiple addresses can be retrieves by passing in an
+   * array of addresses.
    */
   // Retrieve token balances for a given address.
   async balancesForAddress(address) {
-    const path = `${this.restURL}slp/balancesForAddress/${address}`
-
     try {
-      const response = await axios.get(path)
-      return response.data
+      // Single address.
+      if (typeof address === "string") {
+        const path = `${this.restURL}slp/balancesForAddress/${address}`
+
+        const response = await axios.get(path)
+        return response.data
+
+        // Array of addresses.
+      } else if (Array.isArray(address)) {
+        const path = `${this.restURL}slp/balancesForAddress`
+
+        // Dev note: must use axios.post for unit test stubbing.
+        const response = await axios.post(path, {
+          addresses: address
+        })
+
+        return response.data
+      }
+
+      throw new Error(`Input address must be a string or array of strings.`)
     } catch (error) {
       if (error.response && error.response.data) throw error.response.data
       throw error
@@ -281,7 +300,7 @@ class Utils {
   }
 
   /**
-   * @api SLP.Utils.balancesForToken() List all balances for tokenId.
+   * @api SLP.Utils.balancesForToken() balancesForToken() - List all balances for tokenId.
    * @apiName balancesForToken
    * @apiGroup SLP
    * @apiDescription List all balances for tokenId.
@@ -328,7 +347,7 @@ class Utils {
   }
 
   /**
-   * @api SLP.Utils.balance() Return single balance for an address by token id.
+   * @api SLP.Utils.balance() balance() - Return single balance for an address by token id.
    * @apiName balance
    * @apiGroup SLP
    * @apiDescription Return single balance for an address by token id.
@@ -406,7 +425,7 @@ class Utils {
   }
 
   /**
-   * @api SLP.Utils.validateTxid() Validate that txid is an SLP transaction.
+   * @api SLP.Utils.validateTxid() validateTxid() - Validate that txid is an SLP transaction.
    * @apiName validateTxid
    * @apiGroup SLP
    * @apiDescription Validate that txid is an SLP transaction.
@@ -470,7 +489,7 @@ class Utils {
   }
 
   /**
-   * @api SLP.Utils.tokenStats() Stats for token by tokenId.
+   * @api SLP.Utils.tokenStats() tokenStats() - Stats for token by tokenId.
    * @apiName tokenStats
    * @apiGroup SLP
    * @apiDescription Stats for token by tokenId.
@@ -517,7 +536,7 @@ class Utils {
   }
 
   /**
-   * @api SLP.Utils.transactions() SLP Transactions by tokenId and address.
+   * @api SLP.Utils.transactions() transactions() - SLP Transactions by tokenId and address.
    * @apiName transactions
    * @apiGroup SLP
    * @apiDescription SLP Transactions by tokenId and address.
@@ -587,7 +606,7 @@ class Utils {
   }
 
   /**
-   * @api SLP.Utils.burnTotal() List input, output and burn total for slp transaction.
+   * @api SLP.Utils.burnTotal() burnTotal() - List input, output and burn total for slp transaction.
    * @apiName burnTotal
    * @apiGroup SLP
    * @apiDescription List input, output and burn total for slp transaction.

@@ -5,7 +5,7 @@ class Util {
     this.restURL = restURL
   }
   /**
-   * @api util.validateAddress() Get information about the given bitcoin address.
+   * @api util.validateAddress() validateAddress() - Get information about the given bitcoin address.
    * @apiName Validate Address.
    * @apiGroup Util
    * @apiDescription Return information about the given bitcoin address.

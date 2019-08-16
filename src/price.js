@@ -1,6 +1,6 @@
 const axios = require("axios")
 /**
- * @api price.current() Get current price.
+ * @api price.current() current() - Get current price.
  * @apiName Price.
  * @apiGroup Price
  * @apiDescription Return current price of BCH in multiple currencies.

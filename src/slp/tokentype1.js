@@ -12,7 +12,7 @@ class TokenType1 {
     this.restURL = restURL
   }
   /**
-   * @api SLP.TokenType1.create() Create a new SLP Token of Type 1.
+   * @api SLP.TokenType1.create() create() - Create a new SLP Token of Type 1.
    * @apiName create
    * @apiGroup SLP
    * @apiDescription Create a new SLP Token of Type 1.
@@ -92,7 +92,7 @@ class TokenType1 {
     return genesisTxid
   }
   /**
-   * @api SLP.TokenType1.mint() Mint additional tokens of Type 1.
+   * @api SLP.TokenType1.mint() mint() - Mint additional tokens of Type 1.
    * @apiName mint
    * @apiGroup SLP
    * @apiDescription Mint additional tokens of Type 1.
@@ -170,7 +170,7 @@ class TokenType1 {
     return mintTxid
   }
   /**
-   * @api SLP.TokenType1.send() Send tokens of Type 1.
+   * @api SLP.TokenType1.send() send() - Send tokens of Type 1.
    * @apiName send
    * @apiGroup SLP
    * @apiDescription Send tokens of Type 1. one-to-one, one-to-many, many-to-many and many-to-one token transactions supported.
@@ -428,7 +428,7 @@ class TokenType1 {
     )
   }
   /**
-   * @api SLP.TokenType1.burn() Burn an amount of tokens for an address by tokenId.
+   * @api SLP.TokenType1.burn() burn() - Burn an amount of tokens for an address by tokenId.
    * @apiName burn
    * @apiGroup SLP
    * @apiDescription Burn an amount of tokens for an address by tokenId.CAUTION: THIS WILL BURN AN AMOUNT OF YOUR TOKENS FOR A TOKENID. PLEASE USE WITH CARE

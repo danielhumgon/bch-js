@@ -8,9 +8,9 @@ class Address {
     this.restURL = restURL
   }
   /**
-   * @api Address.Insight.details() Details about an address.
-   * @apiName Details
-   * @apiGroup Address
+   * @api Insight.Address.details() details() - Details about an address.
+   * @apiName details
+   * @apiGroup Insight
    * @apiDescription Return details about an address including balance.
    *
    * @apiExample Example usage:
@@ -121,9 +121,9 @@ class Address {
     }
   }
   /**
-   * @api Address.Insight.utxo() Get list of uxto for address.
-   * @apiName Utxo
-   * @apiGroup Address
+   * @api Insight.Address.utxo() utxo() - Get list of uxto for address.
+   * @apiName utxo
+   * @apiGroup Insight
    * @apiDescription Return list of uxto for address. This includes confirmed and unconfirmed utxos.
    *
    * @apiExample Example usage:
@@ -231,9 +231,9 @@ class Address {
     }
   }
   /**
-   * @api Address.Insight.unconfirmed() Get  list of unconfirmed transactions.
-   * @apiName Unconfirmed
-   * @apiGroup Address
+   * @api Insight.Address.unconfirmed() unconfirmed() - Get  list of unconfirmed transactions.
+   * @apiName unconfirmed
+   * @apiGroup Insight
    * @apiDescription Return list of unconfirmed transactions for address.
    *
    * @apiExample Example usage:
@@ -337,9 +337,9 @@ class Address {
     }
   }
   /**
-   * @api Address.Insight.transactions() Get decoded transactions for an address.
-   * @apiName Transactions
-   * @apiGroup Address
+   * @api Address.Insight.transactions() transactions() - Get decoded transactions for an address.
+   * @apiName transactions
+   * @apiGroup Insight
    * @apiDescription Returns decoded transactions for an address.
    *
    * @apiExample Example usage:

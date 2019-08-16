@@ -5,7 +5,7 @@ class Control {
   }
 
   /**
-   * @api Control.getInfo() Get full node info
+   * @api Control.getInfo() getInfo() - Get full node info
    * @apiName getInfo
    * @apiGroup Control
    * @apiDescription Returns an object containing various state info.
@@ -44,7 +44,7 @@ class Control {
     }
   }
   /**
-   * @api Control.getNetworkInfo() Get Network info
+   * @api Control.getNetworkInfo() getNetworkInfo() - Get Network info
    * @apiName getNetworkInfo
    * @apiGroup Control
    * @apiDescription Returns an object containing various network info.
